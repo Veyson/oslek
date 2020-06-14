@@ -17,3 +17,10 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+//************************************************************************ */
+Route::resource('users', 'Api\UserController');
+Route::resource('chamados', 'Api\ChamadoController');
+Route::resource('empresas', 'Api\EmpresaController');
+Route::resource('setors', 'Api\SetorController');
+Route::get('chamados/chamadousuarios/{id}', 'ChamadoController@buscarChamadoUsuarioID');
+Route::get('setores/setorusuarios/{id}', 'SetorController@buscarSetorEmpresaID');
