@@ -14,7 +14,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::resource('usuarios', 'UsuarioController');
-Route::get('carros/carrousuarios/{id}', 'CarroController@buscarCarroUsuarioID');
-Route::resource('carros', 'CarroController');
-
+Route::middleware('auth:api')->get('/user', function (Request $request) {
+    return $request->user();
+});
