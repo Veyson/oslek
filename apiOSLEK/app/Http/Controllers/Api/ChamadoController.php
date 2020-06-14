@@ -15,13 +15,13 @@ class ChamadoController extends Controller
     public function index()
     {
         //
-        $carros = Chamado::all();
-        return $carros;
+        $chamados = Chamado::all();
+        return $chamados;
     }
 
     public function buscarChamadoUsuarioID($id) {
-        $carros = Chamado::where('usuario_id', $id)->get();
-        return $carros;
+        $chamados = Chamado::where('usuario_id', $id)->get();
+        return $chamados;
 
     }
 
@@ -45,27 +45,30 @@ class ChamadoController extends Controller
     {
         //
         try {
-            $nome = $request->input('nome');
-            $marca = $request->input('marca');
-            $consumoGasolina = $request->input('consumoGasolina');
-            $consumoAlcool = $request->input('consumoAlcool');
-            $usuario_id = $request->input('usuario_id');
+            $title = $request->input('title');
+            $description = $request->input('description');
+            $status = $request->input('status');
+            $date = $request->input('date');
+            $user_id = $request->input('user_id');
+            $setor_id = $request->input('setor_id');
 
-            if (!$nome) return response('O Campo nome é obrigatório.', 400);
-            if (!$marca) return response('O Campo marca é obrigatório.', 400);
-            if (!$consumoGasolina) return response('O Campo consumo gasolina é obrigatório.', 400);
-            if (!$consumoAlcool) return response('O Campo consumo álcool é obrigatório.', 400);
-            if (!$usuario_id) return response('Usuário não encontrado.', 400);
+            if (!$title) return response('O Campo título é obrigatório.', 400);
+            if (!$description) return response('O Campo descrição é obrigatório.', 400);
+            if (!$status) return response('O Campo status é obrigatório.', 400);
+            if (!$date) return response('O Campo data é obrigatório.', 400);
+            if (!$user_id) return response('Usuário não encontrado.', 400);
+            if (!$setor_id) return response('Setor não encontrado.', 400);
 
-            $carro = Chamado::insert([
-                'nome' => $nome,
-                'marca' => $marca,
-                'consumoGasolina' => $consumoGasolina,
-                'consumoAlcool' => $consumoAlcool,
-                'usuario_id' => $usuario_id,
+            $chamado = Chamado::insert([
+                'titulo' => $titulo,
+                'description' => $description,
+                'status' => $status,
+                'date' => $date,
+                'user_id' => $user_id,
+                'setor_id' => $setor_id,
             ]);
 
-            return $carro;
+            return $chamado;
 
         }  catch (Exception $e) {
             return response($e->getMessage(), 400);
@@ -75,22 +78,22 @@ class ChamadoController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Chamado  $carro
+     * @param  \App\Chamado  $chamado
      * @return \Illuminate\Http\Response
      */
-    public function show(Chamado $carro)
+    public function show(Chamado $chamado)
     {
         //
-        return $carro;
+        return $chamado;
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Chamado  $carro
+     * @param  \App\Chamado  $chamado
      * @return \Illuminate\Http\Response
      */
-    public function edit(Chamado $carro)
+    public function edit(Chamado $chamado)
     {
         //
     }
@@ -99,10 +102,10 @@ class ChamadoController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Chamado  $carro
+     * @param  \App\Chamado  $chamado
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Chamado $carro)
+    public function update(Request $request, Chamado $chamado)
     {
         //
     }
@@ -110,10 +113,10 @@ class ChamadoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Chamado  $carro
+     * @param  \App\Chamado  $chamado
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Chamado $carro)
+    public function destroy(Chamado $chamado)
     {
         //
     }
