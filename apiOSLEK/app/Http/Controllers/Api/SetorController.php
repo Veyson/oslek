@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
+use App\Setor;
 use Illuminate\Http\Request;
 
 class SetorController extends Controller

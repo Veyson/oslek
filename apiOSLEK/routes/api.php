@@ -18,9 +18,16 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 //************************************************************************ */
-Route::resource('users', 'Api\UserController');
-Route::resource('chamados', 'Api\ChamadoController');
-Route::resource('empresas', 'Api\EmpresaController');
-Route::resource('setors', 'Api\SetorController');
-Route::get('chamados/chamadousuarios/{id}', 'ChamadoController@buscarChamadoUsuarioID');
-Route::get('setores/setorusuarios/{id}', 'SetorController@buscarSetorEmpresaID');
+Route::resource('/chamados', 'Api\ChamadoController');
+Route::resource('/users', 'Api\UserController');
+Route::resource('/empresas', 'Api\EmpresaController');
+Route::resource('/setors', 'Api\SetorController');
+Route::get('chamados/chamadousuarios/{id}', 'Api\ChamadoController@buscarChamadoUsuarioID');
+Route::get('setors/setorempresas/{id}', 'Api\SetorController@buscarSetorEmpresaID');
+
+Route::namespace('Api')->group(function(){
+
+    Route::post('/chamados/create', 'ContatoController@create');
+
+    Route::get('/chamados', 'ContatoController@show');
+});
