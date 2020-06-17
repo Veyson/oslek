@@ -1,0 +1,43 @@
+<!--
+  Generated template for the ChamadoClientePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>OSLEK</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <button ion-button icon-start class="voltar" (click)="goLoginPage();">
+    <ion-icon name="arrow-back"></ion-icon>
+  </button>
+
+  <h4 class="titulo">Realizar Um Chamado</h4>
+
+  <ion-item>
+    <ion-label>Setores</ion-label>
+    <ion-select>
+      <ion-option>Setor Exemplo 1</ion-option>
+      <ion-option>Setor Exemplo 2</ion-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-label floating>Título</ion-label>
+    <ion-input type="text"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label floating>Descrição</ion-label>
+    <ion-textarea rows="5"></ion-textarea>
+  </ion-item>
+
+  <button class="botao "large full ion-button>
+    Enviar
+  </button>
+
+</ion-content>

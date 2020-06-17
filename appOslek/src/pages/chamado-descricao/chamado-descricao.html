@@ -1,0 +1,36 @@
+<!--
+  Generated template for the ChamadoDescricaoPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>OSLEK</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <button ion-button icon-start class="voltar" (click)="goChamadoFuncionarioPage();">
+    <ion-icon name="arrow-back"></ion-icon>
+  </button>
+
+  <h4 class="titulo">Detalhes Chamado</h4>
+  
+  <h1><strong>Titulo: {{ titulo }} </strong></h1>
+  <h2>E-mail: {{ email }} </h2>
+  <h2>Descrição:</h2>
+  <ion-item>
+    <ion-textarea readonly value="{{ descricao }}" rows="5"></ion-textarea>
+  </ion-item>
+  <ion-item>
+    <ion-label>Status</ion-label>
+    <ion-select>
+      <ion-option selected="true">Pendente</ion-option>
+      <ion-option>Em andamento</ion-option>
+      <ion-option>Concluido</ion-option>
+    </ion-select>
+  </ion-item>
+
+</ion-content>

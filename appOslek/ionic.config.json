@@ -1,0 +1,7 @@
+{
+  "name": "appOSLEC",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "ionic-angular"
+}
