@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Empresa;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class EmpresaController extends Controller
 {
@@ -24,9 +25,10 @@ class EmpresaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
         //
+        
     }
 
     /**
@@ -89,7 +91,24 @@ class EmpresaController extends Controller
      */
     public function update(Request $request, Empresa $empresa)
     {
-        //
+        try {
+
+            $name = $request->input('name');
+            $cnpj = $request->input('cnpj');
+
+            if (!$name) return response('O Campo nome é obrigatório.', 400);
+            if (!$cnpj) return response('O Campo CNPJ é obrigatório.', 400);
+
+            $empresa->name = $request->name;
+            $empresa->cnpj = $request->cnpj;
+
+            $empresa->save();
+
+            return ['Retorno: ' => 'Atualizado com sucesso!'];
+
+        }  catch (Exception $erro) {
+            return ['Retorno: ' => $erro];
+        }
     }
 
     /**
@@ -100,7 +119,7 @@ class EmpresaController extends Controller
      */
     public function destroy(Empresa $empresa)
     {
-        //
+        Empresa::where('id', $empresa->id)->delete();
     }
 }
 

@@ -27,7 +27,10 @@ Route::get('setors/setorempresas/{id}', 'Api\SetorController@buscarSetorEmpresaI
 
 Route::namespace('Api')->group(function(){
 
-    Route::post('/chamados/create', 'ContatoController@create');
+    Route::post('/chamados/create', 'ChamadoController@create');
+    Route::post('/empresas/create', 'EmpresaController@create');
+    Route::post('/setors/create', 'SetorController@create');
+    Route::post('/user/create', 'UserController@create');
 
     Route::get('/chamados', 'ContatoController@show');
 });

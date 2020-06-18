@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use App\User;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+
 
 class UserController extends Controller
 {
@@ -24,7 +26,7 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
         //
     }
@@ -104,7 +106,40 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+        try {
+            $name = $request->input('name');
+            $cpf = $request->input('cpf');
+            $email = $request->input('email');
+            $email_verified_at = $request->input('email_verified_at');
+            $password = $request->input('password');
+            $type = $request->input('type');
+            $setor_id = $request->input('setor_id');
+
+            if (!$name) return response('O Campo nome é obrigatório.', 400);
+            if (!$cpf) return response('O Campo CPF é obrigatório.', 400);
+            if (!$email) return response('O Campo email é obrigatório.', 400);
+            if (!$email_verified_at) return response('O Campo verificar email é obrigatório.', 400);
+            if (!$password) return response('O Campo senha é obrigatório.', 400);
+            if (!$type) return response('O Campo tipo de usuário é obrigatório.', 400);
+            if (!$setor_id) return response('Setor não encontrado.', 400);
+
+           
+            $user->name = $request->name;
+            $user->cpf = $request->cpf;
+            $user->email = $request->email; 
+            $user->email_verified_at = $request->email_verified_at;
+            $user->password = $request->password;
+            $user->type = $request->type;
+            $user->setor_id = $request->setor_id;
+            
+
+            $user->save();
+
+            return ['Retorno: ' => 'Atulizado com sucesso!'];
+
+        }  catch (Exception $erro) {
+            return ['Retorno: ' => $erro];
+        }
     }
 
     /**
@@ -115,6 +150,6 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        User::where('id', $empresa->id)->delete();
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Chamado;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class ChamadoController extends Controller
 {
@@ -34,13 +35,14 @@ class ChamadoController extends Controller
     {
         //
     }
-
+     
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function store(Request $request)
     {
         //
@@ -107,7 +109,36 @@ class ChamadoController extends Controller
      */
     public function update(Request $request, Chamado $chamado)
     {
-        //
+        try {
+
+            $title = $request->input('title');
+            $description = $request->input('description');
+            $status = $request->input('status');
+            $date = $request->input('date');
+            $user_id = $request->input('user_id');
+            $setor_id = $request->input('setor_id');
+
+            if (!$title) return response('O Campo título é obrigatório.', 400);
+            if (!$description) return response('O Campo descrição é obrigatório.', 400);
+            if (!$status) return response('O Campo status é obrigatório.', 400);
+            if (!$date) return response('O Campo data é obrigatório.', 400);
+            if (!$user_id) return response('Usuário não encontrado.', 400);
+            if (!$setor_id) return response('Setor não encontrado.', 400);
+
+            $chamado->title = $request->title;
+            $chamado->description = $request->description;
+            $chamado->status = $request->status;
+            $chamado->date = $request->date;
+            $chamado->user_id = $request->user_id;
+            $chamado->setor_id = $request->setor_id;
+
+            $chamado->save();
+
+            return ['Retorno: ' => 'Atulizado com sucesso!'];
+
+        }  catch (Exception $erro) {
+            return ['Retorno: ' => $erro];
+        }
     }
 
     /**

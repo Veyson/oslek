@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use App\Setor;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+
 
 class SetorController extends Controller
 {
@@ -29,7 +31,7 @@ class SetorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
         //
     }
@@ -105,7 +107,7 @@ class SetorController extends Controller
      */
     public function destroy(Setor $setor)
     {
-        //
+        Setor::where('id', $setor->id)->delete();
     }
 }
 
