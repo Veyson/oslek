@@ -7,6 +7,7 @@ import { LoginPage } from '../pages/login/login';
 import { ChamadoClientePage } from '../pages/chamado-cliente/chamado-cliente';
 import { CadastroPage } from '../pages/cadastro/cadastro';
 import { ChamadoFuncionarioPage } from '../pages/chamado-funcionario/chamado-funcionario';
+
 @Component({
   templateUrl: 'app.html'
 })
