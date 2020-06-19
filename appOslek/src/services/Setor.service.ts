@@ -32,5 +32,8 @@ export class SetorService implements ISetorService {
     totalSetores(): number {
         return this.listaSetores.length;
     }
+    removerSetor(setor: Setor): Observable<Object> {
+        return this.http.delete(this.apiURL + "/" + setor.id);
+    }
 
 }

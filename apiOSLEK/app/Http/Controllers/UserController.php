@@ -21,6 +21,11 @@ class UserController extends Controller
         return $users;
     }
 
+    public function buscarUsuarioLogin($email) {
+        $usuarios = Usuario::where('email', $email)->get();
+        return $usuarios;
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -57,7 +62,7 @@ class UserController extends Controller
 
             if ($existe->isNotEmpty()) return response('Já existe um usuário com esse email.', 400);
             
-            $usuario = User::insert([
+            $usuario = User::create([
                 'nome' => $nome,
                 'cpf' => $cpf,
                 'email' => $email,

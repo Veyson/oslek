@@ -52,9 +52,8 @@ class SetorController extends Controller
             if (!$name) return response('O Campo nome é obrigatório.', 400);
             if (!$empresa_id) return response('Empresa não encontrada.', 400);
 
-            $setor = Setor::insert([
+            $setor = Setor::create([
                 'nome' => $nome,
-                'empresa_id' => $empresa_id,
             ]);
 
             return [$setor, 'Retorno: ' => 'Atulizado com sucesso!'];;

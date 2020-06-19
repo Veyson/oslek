@@ -59,7 +59,7 @@ class ChamadoController extends Controller
             if (!$user_id) return response('Usuário não encontrado.', 400);
             if (!$setor_id) return response('Setor não encontrado.', 400);
 
-            $chamado = Chamado::insert([
+            $chamado = Chamado::create([
                 'titulo' => $titulo,
                 'descricao' => $descricao,
                 'status' => $status,
