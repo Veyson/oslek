@@ -1,30 +1,24 @@
 import { ISetorService } from "../interfaces/ISetorService";
 import { Setor } from "../models/Setor";
 import { Injectable } from "@angular/core";
-import { Empresa } from "../models/Empresa";
-import { EmpresaService } from "./Empresa.service";
 import { Global } from '../shared/Global';
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs/Observable";
 @Injectable()
 export class SetorService implements ISetorService {
-    public empresaRelacionada: Empresa;
     public listaSetores: Array<Setor>;
     public apiURL: string = Global.apiURL+"setors";
 
-    constructor(public empresaService: EmpresaService, public http: HttpClient) {
-        this.empresaRelacionada = this.empresaService.retornarEmpresaRelacionada();
+    constructor(public http: HttpClient) {
         let Setores: Array<Setor> = JSON.parse( localStorage.getItem('Setores'));
         this.listaSetores = (Setores) ? Setores : [];
     }
 
-    criarSetores(Setor: Setor): Observable<Object> {
+    criarSetores(setor: Setor): Observable<Object> {
 
-        if ( !Setor.nome ) throw new Error("O campo nome é obrigatório.");
+        if ( !setor.nome ) throw new Error("O campo nome é obrigatório.");
 
-        Setor.empresa_id = this.empresaRelacionada.id;
-
-        return this.http.post(this.apiURL, Setor);
+        return this.http.post(this.apiURL, setor);
 
     }
     buscarSetores(id: number): Setor {
@@ -33,7 +27,7 @@ export class SetorService implements ISetorService {
         return Setor;
     }
     listarSetores(): Observable<Object> {
-        return this.http.get(this.apiURL+"/setorempresas/"+this.empresaRelacionada.id);
+        return this.http.get(this.apiURL+"/setorempresas/");
     }
     totalSetores(): number {
         return this.listaSetores.length;

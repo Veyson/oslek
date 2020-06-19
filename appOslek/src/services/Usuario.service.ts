@@ -11,7 +11,14 @@ export class UsuarioService implements IUsuarioService {
     }
     criarUsuario(usuario: Usuario): Observable<Object> {
         if ( !usuario.nome ) throw new Error("O campo nome é obrigatório.");
+        if ( !usuario.cpf ) throw new Error("O campo cpf é obrigatório.");
         if ( !usuario.email ) throw new Error("O campo email é obrigatório.");
+        if ( !usuario.senha ) throw new Error("O campo senha é obrigatório.");
+        if ( usuario.tipo ){
+            usuario.tipo = "Cliente";
+        } else {
+            usuario.tipo = "Funcionário"
+        }
 
        return this.http.post(this.apiURL, usuario);
     }

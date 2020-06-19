@@ -10,6 +10,8 @@ import { CadastroPage } from '../pages/cadastro/cadastro';
 import { ChamadoClientePage } from '../pages/chamado-cliente/chamado-cliente';
 import { ChamadoFuncionarioPage } from '../pages/chamado-funcionario/chamado-funcionario';
 import { ChamadoDescricaoPage } from '../pages/chamado-descricao/chamado-descricao';
+import { UsuarioService } from '../services/Usuario.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,8 @@ import { ChamadoDescricaoPage } from '../pages/chamado-descricao/chamado-descric
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    HttpClientModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -36,6 +39,7 @@ import { ChamadoDescricaoPage } from '../pages/chamado-descricao/chamado-descric
   providers: [
     StatusBar,
     SplashScreen,
+    UsuarioService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

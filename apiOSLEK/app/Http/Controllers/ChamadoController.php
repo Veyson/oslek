@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers;
 
 use App\Chamado;
 use Illuminate\Http\Request;
@@ -47,30 +47,30 @@ class ChamadoController extends Controller
     {
         //
         try {
-            $title = $request->input('title');
-            $description = $request->input('description');
+            $titulo = $request->input('titulo');
+            $descricao = $request->input('descricao');
             $status = $request->input('status');
-            $date = $request->input('date');
+            $data = $request->input('data');
             $user_id = $request->input('user_id');
             $setor_id = $request->input('setor_id');
 
-            if (!$title) return response('O Campo título é obrigatório.', 400);
-            if (!$description) return response('O Campo descrição é obrigatório.', 400);
+            if (!$titulo) return response('O Campo título é obrigatório.', 400);
+            if (!$descricao) return response('O Campo descrição é obrigatório.', 400);
             if (!$status) return response('O Campo status é obrigatório.', 400);
-            if (!$date) return response('O Campo data é obrigatório.', 400);
+            if (!$data) return response('O Campo data é obrigatório.', 400);
             if (!$user_id) return response('Usuário não encontrado.', 400);
             if (!$setor_id) return response('Setor não encontrado.', 400);
 
             $chamado = Chamado::insert([
                 'titulo' => $titulo,
-                'description' => $description,
+                'descricao' => $descricao,
                 'status' => $status,
-                'date' => $date,
+                'data' => $data,
                 'user_id' => $user_id,
                 'setor_id' => $setor_id,
             ]);
 
-            return $chamado;
+            return [$chamado, 'Retorno: ' => 'Atulizado com sucesso!'];
 
         }  catch (Exception $e) {
             return response($e->getMessage(), 400);
@@ -111,24 +111,24 @@ class ChamadoController extends Controller
     {
         try {
 
-            $title = $request->input('title');
-            $description = $request->input('description');
+            $titulo = $request->input('titulo');
+            $descricao = $request->input('descricao');
             $status = $request->input('status');
-            $date = $request->input('date');
+            $data = $request->input('data');
             $user_id = $request->input('user_id');
             $setor_id = $request->input('setor_id');
 
-            if (!$title) return response('O Campo título é obrigatório.', 400);
-            if (!$description) return response('O Campo descrição é obrigatório.', 400);
+            if (!$titulo) return response('O Campo título é obrigatório.', 400);
+            if (!$descricao) return response('O Campo descrição é obrigatório.', 400);
             if (!$status) return response('O Campo status é obrigatório.', 400);
-            if (!$date) return response('O Campo data é obrigatório.', 400);
+            if (!$data) return response('O Campo data é obrigatório.', 400);
             if (!$user_id) return response('Usuário não encontrado.', 400);
             if (!$setor_id) return response('Setor não encontrado.', 400);
 
-            $chamado->title = $request->title;
-            $chamado->description = $request->description;
+            $chamado->titulo = $request->titulo;
+            $chamado->descricao = $request->descricao;
             $chamado->status = $request->status;
-            $chamado->date = $request->date;
+            $chamado->data = $request->data;
             $chamado->user_id = $request->user_id;
             $chamado->setor_id = $request->setor_id;
 

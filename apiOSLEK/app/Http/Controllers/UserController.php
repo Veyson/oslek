@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
@@ -41,33 +41,31 @@ class UserController extends Controller
     {
         //
         try {
-            $name = $request->input('name');
+            $nome = $request->input('nome');
             $cpf = $request->input('cpf');
             $email = $request->input('email');
-            $email_verified_at = $request->input('email_verified_at');
-            $password = $request->input('password');
-            $type = $request->input('type');
-            $setor_id = $request->input('setor_id');
+            $senha = $request->input('senha');
+            $tipo = $request->input('tipo');
 
-            if (!$name) return response('O Campo nome é obrigatório.', 400);
+            if (!$nome) return response('O Campo nome é obrigatório.', 400);
             if (!$cpf) return response('O Campo CPF é obrigatório.', 400);
             if (!$email) return response('O Campo email é obrigatório.', 400);
-            if (!$email_verified_at) return response('O Campo verificar email é obrigatório.', 400);
-            if (!$password) return response('O Campo senha é obrigatório.', 400);
-            if (!$type) return response('O Campo tipo de usuário é obrigatório.', 400);
-            if (!$setor_id) return response('Setor não encontrado.', 400);
+            if (!$senha) return response('O Campo senha é obrigatório.', 400);
+            if (!$tipo) return response('O Campo tipo de usuário é obrigatório.', 400);
 
-            $user = User::insert([
-                'name' => $name,
+            $existe = User::where('email', $email)->get();
+
+            if ($existe->isNotEmpty()) return response('Já existe um usuário com esse email.', 400);
+            
+            $usuario = User::insert([
+                'nome' => $nome,
                 'cpf' => $cpf,
                 'email' => $email,
-                'email_verified_at' => $email_verified_at,
-                'password' => $password,
-                'type' => $type,
-                'setor_id' => $setor_id
+                'senha' => $senha,
+                'tipo' => $tipo
             ]);
 
-            return $user;
+            return [$usuario,'Retorno: ' => 'Atulizado com sucesso!'];;
 
         }  catch (Exception $e) {
             return response($e->getMessage(), 400);
@@ -80,10 +78,10 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show(User $usuario)
     {
         //
-        return $user;
+        return $usuario;
     }
 
     /**
@@ -92,7 +90,7 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit(User $usuario)
     {
         //
     }
@@ -104,36 +102,33 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, User $usuario)
     {
         try {
-            $name = $request->input('name');
+            $nome = $request->input('nome');
             $cpf = $request->input('cpf');
             $email = $request->input('email');
-            $email_verified_at = $request->input('email_verified_at');
-            $password = $request->input('password');
-            $type = $request->input('type');
-            $setor_id = $request->input('setor_id');
+            $senha = $request->input('senha');
+            $tipo = $request->input('tipo');
 
-            if (!$name) return response('O Campo nome é obrigatório.', 400);
+            if (!$nome) return response('O Campo nome é obrigatório.', 400);
             if (!$cpf) return response('O Campo CPF é obrigatório.', 400);
             if (!$email) return response('O Campo email é obrigatório.', 400);
-            if (!$email_verified_at) return response('O Campo verificar email é obrigatório.', 400);
-            if (!$password) return response('O Campo senha é obrigatório.', 400);
-            if (!$type) return response('O Campo tipo de usuário é obrigatório.', 400);
-            if (!$setor_id) return response('Setor não encontrado.', 400);
-
+            if (!$senha) return response('O Campo senha é obrigatório.', 400);
+            if (!$tipo) return response('O Campo tipo de usuário é obrigatório.', 400);
            
-            $user->name = $request->name;
-            $user->cpf = $request->cpf;
-            $user->email = $request->email; 
-            $user->email_verified_at = $request->email_verified_at;
-            $user->password = $request->password;
-            $user->type = $request->type;
-            $user->setor_id = $request->setor_id;
+            $existe = User::where('email', $email)->get();
+
+            if ($existe->isNotEmpty()) return response('Já existe um usuário com esse email.', 400);
+        
+            $usuario->nome = $request->nome;
+            $usuario->cpf = $request->cpf;
+            $usuario->email = $request->email; 
+            $usuario->senha = $request->senha;
+            $usuario->tipo = $request->tipo;
             
 
-            $user->save();
+            $usuario->save();
 
             return ['Retorno: ' => 'Atulizado com sucesso!'];
 
@@ -148,8 +143,8 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy(User $usuario)
     {
-        User::where('id', $empresa->id)->delete();
+        User::where('id', $usuario->id)->delete();
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers;
 
 use App\Setor;
 use Illuminate\Http\Request;
@@ -46,18 +46,18 @@ class SetorController extends Controller
     {
         //
         try {
-            $name = $request->input('name');
+            $nome = $request->input('nome');
             $empresa_id = $request->input('empresa_id');
 
             if (!$name) return response('O Campo nome é obrigatório.', 400);
             if (!$empresa_id) return response('Empresa não encontrada.', 400);
 
             $setor = Setor::insert([
-                'name' => $name,
+                'nome' => $nome,
                 'empresa_id' => $empresa_id,
             ]);
 
-            return $setor;
+            return [$setor, 'Retorno: ' => 'Atulizado com sucesso!'];;
 
         }  catch (Exception $e) {
             return response($e->getMessage(), 400);

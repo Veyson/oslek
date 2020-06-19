@@ -21,28 +21,33 @@
   <ion-list>
   <ion-item>
     <ion-label floating>CPF</ion-label>
-    <ion-input type="number"></ion-input>
+    <ion-input  [(ngModel)]="usuario.cpf" type="text"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label floating>Nome</ion-label>
+    <ion-input  [(ngModel)]="usuario.nome" type="text"></ion-input>
   </ion-item>
 
   <ion-item>
     <ion-label floating>E-mail</ion-label>
-    <ion-input type="email"></ion-input>
+    <ion-input  [(ngModel)]="usuario.email" type="email"></ion-input>
   </ion-item>
 
   <ion-item>
     <ion-label floating>Senha</ion-label>
-    <ion-input type="password"></ion-input>
+    <ion-input  [(ngModel)]="usuario.senha" type="password"></ion-input>
   </ion-item>
 
 
   <ion-item>
     <ion-label>Sou Funcionário</ion-label>
-    <ion-checkbox checked="false"></ion-checkbox>
+    <ion-checkbox  [(ngModel)]="usuario.tipo" checked="false"></ion-checkbox>
   </ion-item>
 
 </ion-list>
 
-<button class="botao" large full ion-button>
+<button class="botao" large full ion-button (click)="cadastrarUsuario();">
   Cadastrar
 </button>
 
