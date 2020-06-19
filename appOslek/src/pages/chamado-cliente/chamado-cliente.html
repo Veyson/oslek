@@ -19,24 +19,23 @@
   <h4 class="titulo">Realizar Um Chamado</h4>
 
   <ion-item>
-    <ion-label>Setores</ion-label>
-    <ion-select>
-      <ion-option>Setor Exemplo 1</ion-option>
-      <ion-option>Setor Exemplo 2</ion-option>
-    </ion-select>
-  </ion-item>
-
-  <ion-item>
     <ion-label floating>Título</ion-label>
-    <ion-input type="text"></ion-input>
+    <ion-input [(ngModel)]="chamado.titulo" type="text"></ion-input>
   </ion-item>
 
   <ion-item>
     <ion-label floating>Descrição</ion-label>
-    <ion-textarea rows="5"></ion-textarea>
+    <ion-textarea [(ngModel)]="chamado.descricao" rows="5"></ion-textarea>
   </ion-item>
 
-  <button class="botao "large full ion-button>
+  <ion-item>
+    <ion-select [(ngModel)]="setorSelecionadoId" cancelText="Cancelar" okText="Ok">
+      <ion-option disabled selected>Selecione um setor</ion-option>
+      <ion-option *ngFor="let setor of setors" value="{{setor.id}}">{{ setor.nome }}</ion-option>
+    </ion-select>
+  </ion-item>
+
+  <button class="botao "large full ion-button (click)="registrarChamado();">
     Enviar
   </button>
 

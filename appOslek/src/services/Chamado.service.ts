@@ -20,12 +20,10 @@ export class ChamadoService implements IChamadoService {
 
     criarChamados(Chamado: Chamado): Observable<Object> {
 
+        Chamado.status = "Pendente";
         if ( !Chamado.titulo ) throw new Error("O campo titulo é obrigatório.");
         if ( !Chamado.descricao ) throw new Error("O campo decrição é obrigatório.");
-        if ( !Chamado.status ) throw new Error("O campo status é obrigatório.");
-        if ( !Chamado.data ) throw new Error("O campo data é obrigatório.");
-        if ( !Chamado.image ) throw new Error("O campo imagem é obrigatório.");
-        if ( !Chamado.setor_id) throw new Error("O campo setor é obrigatório.");
+        if ( !Chamado.setor_id) throw new Error("Setor não selecionado.");
 
         Chamado.usuario_id = this.usuarioLogado.id;
 

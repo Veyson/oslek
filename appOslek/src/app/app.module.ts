@@ -12,6 +12,7 @@ import { ChamadoFuncionarioPage } from '../pages/chamado-funcionario/chamado-fun
 import { ChamadoDescricaoPage } from '../pages/chamado-descricao/chamado-descricao';
 import { UsuarioService } from '../services/Usuario.service';
 import { HttpClientModule } from '@angular/common/http';
+import { ChamadoService } from '../services/Chamado.service';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { HttpClientModule } from '@angular/common/http';
     StatusBar,
     SplashScreen,
     UsuarioService,
+    ChamadoService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
