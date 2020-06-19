@@ -14,7 +14,7 @@ export class UsuarioService implements IUsuarioService {
         if ( !usuario.cpf ) throw new Error("O campo cpf é obrigatório.");
         if ( !usuario.email ) throw new Error("O campo email é obrigatório.");
         if ( !usuario.senha ) throw new Error("O campo senha é obrigatório.");
-        if ( usuario.tipo ){
+        if ( !usuario.tipo ){
             usuario.tipo = "Cliente";
         } else {
             usuario.tipo = "Funcionário"
