@@ -22,7 +22,7 @@ export class ChamadoService implements IChamadoService {
 
         if ( !Chamado.titulo ) throw new Error("O campo titulo é obrigatório.");
         if ( !Chamado.descricao ) throw new Error("O campo decrição é obrigatório.");
-        if ( !Chamado.setor) throw new Error("Setor não selecionado.");
+        if ( !Chamado.setor) throw new Error("O campo setor é obrigatório.");
 
         Chamado.status = "Pendente";
         Chamado.usuario_id = this.usuarioLogado.id;
