@@ -4,6 +4,7 @@ import { ChamadoClientePage } from '../chamado-cliente/chamado-cliente';
 import { CadastroPage } from '../cadastro/cadastro';
 import { Usuario } from '../../models/Usuario';
 import { UsuarioService } from '../../services/Usuario.service';
+import { ChamadoFuncionarioPage } from '../chamado-funcionario/chamado-funcionario';
 
 
 /**
@@ -21,6 +22,7 @@ import { UsuarioService } from '../../services/Usuario.service';
 export class LoginPage {
 
   chamadoClientePage = ChamadoClientePage;
+  chamadoFuncionarioPage = ChamadoFuncionarioPage;
   cadastroPage = CadastroPage;
   public usuario: Usuario = new Usuario();
 
@@ -33,10 +35,16 @@ export class LoginPage {
     console.log('ionViewDidLoad LoginPage');
   }
 
+  
   goChamadoClientePage(){
+  
     this.usuarioServices.authUsuario(this.usuario).subscribe((success) => {
-      console.log(success);
-      this.navCtrl.setRoot(this.chamadoClientePage);
+      if(success[0].tipo == "Cliente"){
+        this.navCtrl.setRoot(this.chamadoClientePage);
+      }else if(success[0].tipo == "Funcionário"){
+        this.navCtrl.setRoot(this.chamadoFuncionarioPage);
+      }
+      //
     }, (error) => {
       console.log(error);
     });

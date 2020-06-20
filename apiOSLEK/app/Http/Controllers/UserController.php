@@ -20,9 +20,13 @@ class UserController extends Controller
         $users = User::all();
         return $users;
     }
-
-    public function buscarUsuarioLogin($email) {
-        $usuarios = Usuario::where('email', $email)->get();
+  
+    public function buscarUsuarioLogin(Request $request) {
+        
+        $email = $request->input('email');
+        $senha = $request->input('senha');
+        
+        $usuarios = User::where('email', $email)->where('senha', $senha)->get();
         return $usuarios;
     }
 
