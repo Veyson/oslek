@@ -3,7 +3,6 @@ export class Chamado {
   public titulo: string = null;
   public descricao: string = null;
   public status: string = null;
-  public data: string = null;
   public usuario_id: number = null;
-  public setor_id: number = null;
+  public setor: string = null;
 }

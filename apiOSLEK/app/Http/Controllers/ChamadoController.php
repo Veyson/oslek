@@ -51,20 +51,20 @@ class ChamadoController extends Controller
             $descricao = $request->input('descricao');
             $status = $request->input('status');
             $user_id = $request->input('user_id');
-            $setor_id = $request->input('setor_id');
+            $setor = $request->input('setor');
 
             if (!$titulo) return response('O Campo título é obrigatório.', 400);
             if (!$descricao) return response('O Campo descrição é obrigatório.', 400);
             if (!$status) return response('O Campo status é obrigatório.', 400);
             if (!$user_id) return response('Usuário não encontrado.', 400);
-            if (!$setor_id) return response('Setor não encontrado.', 400);
+            if (!$setor) return response('O Campo setor é obrigatório.', 400);
 
             $chamado = Chamado::create([
                 'titulo' => $titulo,
                 'descricao' => $descricao,
                 'status' => $status,
                 'user_id' => $user_id,
-                'setor_id' => $setor_id,
+                'setor' => $setor,
             ]);
 
             return [$chamado, 'Retorno: ' => 'Atulizado com sucesso!'];
@@ -112,19 +112,19 @@ class ChamadoController extends Controller
             $descricao = $request->input('descricao');
             $status = $request->input('status');
             $user_id = $request->input('user_id');
-            $setor_id = $request->input('setor_id');
+            $setor = $request->input('setor');
 
             if (!$titulo) return response('O Campo título é obrigatório.', 400);
             if (!$descricao) return response('O Campo descrição é obrigatório.', 400);
             if (!$status) return response('O Campo status é obrigatório.', 400);
             if (!$user_id) return response('Usuário não encontrado.', 400);
-            if (!$setor_id) return response('Setor não encontrado.', 400);
+            if (!$setor) return response('O Campo setor é obrigatório.', 400);
 
             $chamado->titulo = $request->titulo;
             $chamado->descricao = $request->descricao;
             $chamado->status = $request->status;
             $chamado->user_id = $request->user_id;
-            $chamado->setor_id = $request->setor_id;
+            $chamado->setor = $request->setor;
 
             $chamado->save();
 

@@ -19,9 +19,8 @@ class CreateChamadosTable extends Migration
             $table->string('descricao');
             $table->string('status');
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('setor_id');
+            $table->string('setor');
             $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('setor_id')->references('id')->on('setors');
             $table->timestamps();
         });
     }
