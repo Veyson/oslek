@@ -22,8 +22,6 @@ export class ChamadoFuncionarioPage {
   @ViewChild(Content) content: Content;
   @ViewChild(Refresher) refresher: Refresher;
   public chamados: Array<Chamado> = new Array<Chamado>();
-  loginPage = LoginPage;
-  chamadoDescricaoPage = ChamadoDescricaoPage;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public chamadoService: ChamadoService) {
@@ -47,10 +45,10 @@ export class ChamadoFuncionarioPage {
   }
 
   goLoginPage(){
-    this.navCtrl.setRoot(this.loginPage);
+    this.navCtrl.setRoot(LoginPage);
   }
 
   goChamadoDescricaoPage(){
-    this.navCtrl.setRoot(this.chamadoDescricaoPage);
+    this.navCtrl.setRoot(ChamadoDescricaoPage);
   }
 }

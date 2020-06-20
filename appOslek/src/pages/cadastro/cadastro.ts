@@ -18,7 +18,6 @@ import { Usuario } from '../../models/Usuario';
 })
 export class CadastroPage {
 
-  loginPage = LoginPage;
   public usuario: Usuario = new Usuario();
   
   constructor(public navCtrl: NavController, public navParams: NavParams,
@@ -31,7 +30,7 @@ export class CadastroPage {
   }
 
   goLoginPage(){
-    this.navCtrl.setRoot(this.loginPage);
+    this.navCtrl.setRoot(LoginPage);
   }
 
   cadastrarUsuario() {

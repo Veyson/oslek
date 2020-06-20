@@ -18,8 +18,6 @@ import { ChamadoService } from '../../services/Chamado.service';
 })
 export class ChamadoClientePage {
 
-  loginPage = LoginPage;
-
   public chamado: Chamado = new Chamado();
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
@@ -32,7 +30,7 @@ export class ChamadoClientePage {
   }
 
   goLoginPage(){
-    this.navCtrl.setRoot(this.loginPage);
+    this.navCtrl.setRoot(LoginPage);
   }
 
   registrarChamado() {

@@ -16,7 +16,7 @@ export class ChamadoService implements IChamadoService {
         this.usuarioLogado = this.usuarioService.retornarUsuarioLogado();
         let Chamados: Array<Chamado> = JSON.parse( localStorage.getItem('Chamados'));
         this.listaChamados = (Chamados) ? Chamados : [];
-    }  
+    }    
 
     criarChamados(Chamado: Chamado): Observable<Object> {
 

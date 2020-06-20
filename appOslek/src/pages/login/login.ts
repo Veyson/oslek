@@ -21,9 +21,6 @@ import { ChamadoFuncionarioPage } from '../chamado-funcionario/chamado-funcionar
 })
 export class LoginPage {
 
-  chamadoClientePage = ChamadoClientePage;
-  chamadoFuncionarioPage = ChamadoFuncionarioPage;
-  cadastroPage = CadastroPage;
   public usuario: Usuario = new Usuario();
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
@@ -40,9 +37,9 @@ export class LoginPage {
   
     this.usuarioServices.authUsuario(this.usuario).subscribe((success) => {
       if(success[0].tipo == "Cliente"){
-        this.navCtrl.setRoot(this.chamadoClientePage);
+        this.navCtrl.setRoot(ChamadoClientePage);
       }else if(success[0].tipo == "Funcionário"){
-        this.navCtrl.setRoot(this.chamadoFuncionarioPage);
+        this.navCtrl.setRoot(ChamadoFuncionarioPage);
       }
       //
     }, (error) => {
@@ -51,6 +48,6 @@ export class LoginPage {
   }
 
   goCadastroPage(){
-    this.navCtrl.setRoot(this.cadastroPage);
+    this.navCtrl.setRoot(CadastroPage);
   }
 }
