@@ -12,7 +12,7 @@
 
 <ion-content padding>
 
-  <button ion-button icon-start class="voltar" (click)="goLoginPage();">
+  <button ion-button icon-start class="voltar" (click)="logout();">
     <ion-icon name="arrow-back"></ion-icon>
   </button>
 
@@ -26,12 +26,12 @@
   <ion-item>
     <ion-label floating>Descrição</ion-label>
     <ion-textarea [(ngModel)]="chamado.descricao" rows="5"></ion-textarea>
-  </ion-item>
+  </ion-item>  
 
   <ion-item>
-    <ion-select [(ngModel)]="setorSelecionadoId" cancelText="Cancelar" okText="Ok">
-      <ion-option disabled selected>Selecione um setor</ion-option>
-      <ion-option *ngFor="let setor of setors" value="{{setor.id}}">{{ setor.nome }}</ion-option>
+    <ion-select [(ngModel)]="chamado.setor" cancelText="Cancelar" okText="Ok">
+      <ion-option value="1">Administração</ion-option>
+      <ion-option value="2">Biblioteca</ion-option>
     </ion-select>
   </ion-item>
 

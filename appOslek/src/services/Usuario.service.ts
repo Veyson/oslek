@@ -25,7 +25,6 @@ export class UsuarioService implements IUsuarioService {
     authUsuario(usuario: Usuario): Observable<Object> {
         if (!usuario.email) throw new Error("O campo email é obrigatório.");
         if (!usuario.senha) throw new Error("O campo senha é obrigatório.");
-        this.logar(usuario);
         return this.http.post(this.apiURL +"/buscarusuario/", usuario);
     }
     buscarUsuario(id: number): Usuario {
@@ -34,11 +33,11 @@ export class UsuarioService implements IUsuarioService {
     listarUsuarios(): Observable<Object> {
         return this.http.get(this.apiURL);
     }
-    logar(usuario: Usuario): void {
-        localStorage.setItem("usuarioLogado", JSON.stringify(usuario));
+    logar(usuario: Object): void {
+        console.log(localStorage.setItem("usuarioLogado", JSON.stringify(usuario)));
     }
-    retornarUsuarioLogado(): Usuario {
-        let usuarioLogado: Usuario = JSON.parse(localStorage.getItem("usuarioLogado"));
+    retornarUsuarioLogado(): Object {
+        let usuarioLogado: Object = JSON.parse(localStorage.getItem("usuarioLogado"));
         return usuarioLogado;
     }
     logout(): void {

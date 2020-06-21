@@ -6,5 +6,5 @@ export interface IUsuarioService {
     buscarUsuario(id: number) : Usuario;
     listarUsuarios() :Observable<Object>;
     logar(usuario: Usuario) : void;
-    retornarUsuarioLogado() : Usuario;
+    retornarUsuarioLogado() : Object;
 }

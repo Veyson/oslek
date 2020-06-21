@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, NavParams, Content, Refresher } from 'ionic-angular';
 import { ChamadoClientePage } from '../chamado-cliente/chamado-cliente';
 import { CadastroPage } from '../cadastro/cadastro';
 import { Usuario } from '../../models/Usuario';
@@ -21,11 +21,11 @@ import { ChamadoFuncionarioPage } from '../chamado-funcionario/chamado-funcionar
 })
 export class LoginPage {
 
-  public usuario: Usuario = new Usuario();
+  usuario: Usuario = new Usuario();
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public usuarioServices: UsuarioService) {
-      console.log(this.usuario);
+      
   }
 
   ionViewDidLoad() {
@@ -33,12 +33,15 @@ export class LoginPage {
   }
 
   
-  goChamadoClientePage(){
-  
+  goOpenSystem(){
     this.usuarioServices.authUsuario(this.usuario).subscribe((success) => {
-      if(success[0].tipo == "Cliente"){
+      if(success[0].tipo == "Cliente"){  
+        this.usuarioServices.logar(success);
         this.navCtrl.setRoot(ChamadoClientePage);
+
       }else if(success[0].tipo == "Funcionário"){
+          
+        this.usuarioServices.logar(success);
         this.navCtrl.setRoot(ChamadoFuncionarioPage);
       }
       //

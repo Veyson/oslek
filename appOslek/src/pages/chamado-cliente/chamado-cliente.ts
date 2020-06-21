@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { LoginPage } from '../login/login';
 import { Chamado } from '../../models/Chamado';
 import { ChamadoService } from '../../services/Chamado.service';
+import { UsuarioService } from '../../services/Usuario.service';
 
 /**
  * Generated class for the ChamadoClientePage page.
@@ -21,17 +22,13 @@ export class ChamadoClientePage {
   public chamado: Chamado = new Chamado();
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-    public chamadoServices: ChamadoService) {
-      console.log(this.chamado);
+    public chamadoServices: ChamadoService, public usuarioServices: UsuarioService) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ChamadoClientePage');
   }
 
-  goLoginPage(){
-    this.navCtrl.setRoot(LoginPage);
-  }
 
   registrarChamado() {
     this.chamadoServices.criarChamados(this.chamado).subscribe((success) => {
@@ -40,6 +37,11 @@ export class ChamadoClientePage {
       console.log(error);
     });
     
+  }
+
+  logout() {
+    this.usuarioServices.logout();
+    this.navCtrl.setRoot(LoginPage);
   }
 
 }
