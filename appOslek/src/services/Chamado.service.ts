@@ -38,4 +38,17 @@ export class ChamadoService implements IChamadoService {
         return this.http.delete(this.apiURL+"/"+chamado.id);
       }
 
+    detalharChamado(chamado: Chamado): void{
+        console.log(chamado);
+        localStorage.setItem("detalharChamado", JSON.stringify(chamado));
+    }
+
+    retornarChamadoDetalhado(): Chamado{
+        let chamadoDetalhado: Chamado = JSON.parse(localStorage.getItem("detalharChamado"));
+        return chamadoDetalhado;
+    }
+
+    killChamadoStorage(){
+        localStorage.removeItem("detalharChamado");
+    }
 }

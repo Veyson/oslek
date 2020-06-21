@@ -39,7 +39,8 @@ export class ChamadoFuncionarioPage {
     console.log('ionViewDidLoad ChamadoFuncionarioPage');
   }
 
-  goChamadoDescricaoPage(){
+  goChamadoDescricaoPage(chamado: Chamado){
+    this.chamadoServices.detalharChamado(chamado);
     this.navCtrl.setRoot(ChamadoDescricaoPage);
   }
 

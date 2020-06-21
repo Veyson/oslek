@@ -5,4 +5,5 @@ export interface IChamadoService {
     criarChamados(chamado: Chamado) : Observable<Object>;
     listarChamados() :Observable<Object>;
     removerChamado(chamado: Chamado): Observable<Object>
+    detalharChamado(chamado: Chamado): void;
 }

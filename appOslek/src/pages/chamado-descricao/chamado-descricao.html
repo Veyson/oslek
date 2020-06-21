@@ -18,11 +18,12 @@
 
   <h4 class="titulo">Detalhes Chamado</h4>
   
-  <h1><strong>Titulo: {{ titulo }} </strong></h1>
-  <h2>E-mail: {{ email }} </h2>
+  <h1><strong>Titulo: {{ chamado.titulo }} </strong></h1>
+  <h2>Usuário: {{ chamado.usuario_id }} </h2>
+  <h2>Setor: {{ chamado.setor }} </h2>
   <h2>Descrição:</h2>
   <ion-item>
-    <ion-textarea readonly value="{{ descricao }}" rows="5"></ion-textarea>
+    <ion-textarea readonly value="{{ chamado.descricao }}" rows="5"></ion-textarea>
   </ion-item>
   <ion-item>
     <ion-label>Status</ion-label>

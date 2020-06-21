@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ChamadoFuncionarioPage } from '../chamado-funcionario/chamado-funcionario';
+import { ChamadoService } from '../../services/Chamado.service';
+import { Chamado } from '../../models/Chamado';
 
 /**
  * Generated class for the ChamadoDescricaoPage page.
@@ -16,13 +18,11 @@ import { ChamadoFuncionarioPage } from '../chamado-funcionario/chamado-funcionar
 })
 export class ChamadoDescricaoPage {
 
-  chamadoFuncionarioPage = ChamadoFuncionarioPage;
-
-  public titulo: any = "Titulo";
-  public email: any = "E-Mail";
-  public descricao: any = "Descrição";
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  public chamado: Chamado = new Chamado();
+  constructor(public navCtrl: NavController, public navParams: NavParams, 
+    public chamadoServices: ChamadoService) {
+    this.chamado = this.chamadoServices.retornarChamadoDetalhado();
+    console.log(this.chamado);
   }
 
   ionViewDidLoad() {
@@ -30,7 +30,9 @@ export class ChamadoDescricaoPage {
   }
 
   goChamadoFuncionarioPage(){
-    this.navCtrl.setRoot(this.chamadoFuncionarioPage);
+    this.chamadoServices.killChamadoStorage();
+    this.navCtrl.setRoot(ChamadoFuncionarioPage);
   }
+   
 
 }

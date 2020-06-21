@@ -1,5 +1,5 @@
-import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, Content, Refresher } from 'ionic-angular';
+import { Component} from '@angular/core';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ChamadoClientePage } from '../chamado-cliente/chamado-cliente';
 import { CadastroPage } from '../cadastro/cadastro';
 import { Usuario } from '../../models/Usuario';
@@ -34,13 +34,16 @@ export class LoginPage {
 
   
   goOpenSystem(){
+    console.log(this.usuario.email);
+    console.log(this.usuario.email);
     this.usuarioServices.authUsuario(this.usuario).subscribe((success) => {
       if(success[0].tipo == "Cliente"){  
+        console.log(success[0].tipo);
         this.usuarioServices.logar(success);
         this.navCtrl.setRoot(ChamadoClientePage);
 
       }else if(success[0].tipo == "Funcionário"){
-          
+        console.log(success[0].tipo);
         this.usuarioServices.logar(success);
         this.navCtrl.setRoot(ChamadoFuncionarioPage);
       }

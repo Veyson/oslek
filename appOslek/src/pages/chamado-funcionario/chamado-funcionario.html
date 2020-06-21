@@ -23,7 +23,7 @@
       <p>Você ainda não possui um chamado.</p>
     </div>
   
-    <ion-card *ngFor="let chamado of chamados" (click)="goChamadoDescricaoPage();">
+    <ion-card *ngFor="let chamado of chamados" (click)="goChamadoDescricaoPage(chamado);">
       <ion-card-header>
         {{ chamado.titulo }} - {{ chamado.status }}
       </ion-card-header>
