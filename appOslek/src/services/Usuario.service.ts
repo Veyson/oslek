@@ -27,8 +27,8 @@ export class UsuarioService implements IUsuarioService {
         if (!usuario.senha) throw new Error("O campo senha é obrigatório.");
         return this.http.post(this.apiURL +"/buscarusuario/", usuario);
     }
-    buscarUsuario(id: number): Usuario {
-        throw new Error("Method not implements!");
+    buscarUsuarioId(usuario: Usuario): Observable<Object> {
+        return this.http.post(this.apiURL +"/buscarusuarioId/", usuario);
     }
     listarUsuarios(): Observable<Object> {
         return this.http.get(this.apiURL);

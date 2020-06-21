@@ -30,6 +30,13 @@ class UserController extends Controller
         return $usuarios;
     }
 
+    public function buscarUsuarioId(Request $request) {
+        
+        $id = $request->input('id');
+        
+        $usuario = User::where('id', $id)->get();
+        return $usuario;
+    }
     /**
      * Show the form for creating a new resource.
      *

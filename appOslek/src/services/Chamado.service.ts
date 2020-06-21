@@ -51,4 +51,8 @@ export class ChamadoService implements IChamadoService {
     killChamadoStorage(){
         localStorage.removeItem("detalharChamado");
     }
+
+    atualizarUsuario(chamado: Chamado): Observable<Object> {
+         return this.http.put(this.apiURL+"/"+chamado.id, chamado);
+      }
 }

@@ -5,6 +5,7 @@ import { ChamadoDescricaoPage } from '../chamado-descricao/chamado-descricao';
 import { ChamadoService } from '../../services/Chamado.service';
 import { Chamado } from '../../models/Chamado';
 import { UsuarioService } from '../../services/Usuario.service';
+import { Usuario } from '../../models/Usuario';
 
 /**
  * Generated class for the ChamadoFuncionarioPage page.
@@ -21,6 +22,7 @@ import { UsuarioService } from '../../services/Usuario.service';
 export class ChamadoFuncionarioPage {
 
   public chamados: Array<Chamado> = new Array<Chamado>();
+
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public chamadoServices: ChamadoService, public usuarioServices: UsuarioService) {
       this.buscarChamados();
@@ -29,7 +31,6 @@ export class ChamadoFuncionarioPage {
   buscarChamados() {
     this.chamadoServices.listarChamados().subscribe((response) => {
       this.chamados = <Chamado[]> response;
-      console.log(this.chamados);
     }, (erro) => {
       console.log(erro);
     });

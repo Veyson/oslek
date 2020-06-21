@@ -3,7 +3,7 @@ import { Observable } from "rxjs/Observable";
 
 export interface IUsuarioService {
     criarUsuario(usuario: Usuario) : Observable<Object>;
-    buscarUsuario(id: number) : Usuario;
+    buscarUsuarioId(usuario: Usuario) :  Observable<Object>;
     listarUsuarios() :Observable<Object>;
     logar(usuario: Usuario) : void;
     retornarUsuarioLogado() : Object;
