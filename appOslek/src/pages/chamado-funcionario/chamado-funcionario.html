@@ -18,10 +18,6 @@
   </button>
 
   <h4 class="titulo">Chamados</h4>
-
-  <ion-refresher (ionRefresh)="doRefresh($event)">
-      <ion-refresher-content></ion-refresher-content>
-    </ion-refresher>
   
     <div *ngIf="chamados.length == 0">
       <p>Você ainda não possui um chamado.</p>
@@ -29,7 +25,7 @@
   
     <ion-card *ngFor="let chamado of chamados" (click)="goChamadoDescricaoPage();">
       <ion-card-header>
-        {{ chamado.Titulo }} - {{ chamado.status }}
+        {{ chamado.titulo }} - {{ chamado.status }}
       </ion-card-header>
       <ion-card-content>
   
@@ -39,7 +35,7 @@
               <strong>Usuario</strong>
             </ion-col>
             <ion-col col-6>
-              {{ chamado.usuario_id }} km/l
+              {{ chamado.usuario_id }}
             </ion-col>
           </ion-row>
   
@@ -48,7 +44,7 @@
               <strong>Setor</strong>
             </ion-col>
             <ion-col col-6>
-              {{ chamado.setor }} km/l
+              {{ chamado.setor }} 
             </ion-col>
           </ion-row>
   

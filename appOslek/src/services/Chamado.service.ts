@@ -13,9 +13,6 @@ export class ChamadoService implements IChamadoService {
 
     constructor(public usuarioService: UsuarioService, public http: HttpClient) {
         this.usuarioLogado = this.usuarioService.retornarUsuarioLogado();
-        console.log(this.usuarioLogado);
-        let Chamados: Array<Chamado> = JSON.parse( localStorage.getItem('Chamados'));
-        this.listaChamados = (Chamados) ? Chamados : [];
     }    
 
     criarChamados(chamado: Chamado): Observable<Object> {
@@ -33,16 +30,12 @@ export class ChamadoService implements IChamadoService {
         return this.http.post(this.apiURL, chamado);
 
     }
-    buscarChamados(id: number): Chamado {
-        if ( !id ) throw new Error("Nenhum Chamado foi escolhido.");
-        let chamado: Chamado = this.listaChamados.find(c => c.id == id);
-        return chamado;
-    }
     listarChamados(): Observable<Object> {
-        return this.http.get(this.apiURL+"/chamadousuarios/"+this.usuarioLogado[0].id);
+        return this.http.get(this.apiURL);
     }
-    totalChamados(): number {
-        return this.listaChamados.length;
-    }
+
+    removerChamado(chamado: Chamado): Observable<Object> {
+        return this.http.delete(this.apiURL+"/"+chamado.id);
+      }
 
 }

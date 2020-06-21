@@ -1,5 +1,5 @@
-import { Component} from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Component, ViewChild} from '@angular/core';
+import { IonicPage, NavController, NavParams, Content, Refresher } from 'ionic-angular';
 import { LoginPage } from '../login/login';
 import { ChamadoDescricaoPage } from '../chamado-descricao/chamado-descricao';
 import { ChamadoService } from '../../services/Chamado.service';
@@ -21,18 +21,15 @@ import { UsuarioService } from '../../services/Usuario.service';
 export class ChamadoFuncionarioPage {
 
   public chamados: Array<Chamado> = new Array<Chamado>();
-
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public chamadoServices: ChamadoService, public usuarioServices: UsuarioService) {
-  }
-
-  doRefresh(refresher) {
-    this.buscarChamados();
+      this.buscarChamados();
   }
 
   buscarChamados() {
     this.chamadoServices.listarChamados().subscribe((response) => {
       this.chamados = <Chamado[]> response;
+      console.log(this.chamados);
     }, (erro) => {
       console.log(erro);
     });
