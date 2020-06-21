@@ -41,7 +41,7 @@ export class ChamadoClientePage {
 
   logout() {
     this.usuarioServices.logout();
-    this.navCtrl.setRoot(LoginPage);
+    this.navCtrl.setRoot(LoginPage);  
   }
 
 }

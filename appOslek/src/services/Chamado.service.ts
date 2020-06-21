@@ -7,14 +7,18 @@ import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs/Observable";
 @Injectable()
 export class ChamadoService implements IChamadoService {
+    
     public usuarioLogado: Object;
-    public listaChamados: Array<Chamado>;
     public apiURL: string = Global.apiURL+"chamados";
 
     constructor(public usuarioService: UsuarioService, public http: HttpClient) {
-        this.usuarioLogado = this.usuarioService.retornarUsuarioLogado();
+    
     }    
 
+    usuarioLogadoMethod(): void{
+        this.usuarioLogado = this.usuarioService.retornarUsuarioLogado();
+        console.log(this.usuarioLogado);
+    }
     criarChamados(chamado: Chamado): Observable<Object> {
 
         if ( !chamado.titulo ) throw new Error("O campo titulo é obrigatório.");

@@ -42,7 +42,7 @@ export class ChamadoFuncionarioPage {
 
   goChamadoDescricaoPage(chamado: Chamado){
     this.chamadoServices.detalharChamado(chamado);
-    this.navCtrl.setRoot(ChamadoDescricaoPage);
+    this.navCtrl.push(ChamadoDescricaoPage);
   }
 
   logout() {

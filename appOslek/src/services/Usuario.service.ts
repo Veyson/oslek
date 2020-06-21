@@ -34,7 +34,7 @@ export class UsuarioService implements IUsuarioService {
         return this.http.get(this.apiURL);
     }
     logar(usuario: Object): void {
-        console.log(localStorage.setItem("usuarioLogado", JSON.stringify(usuario)));
+        localStorage.setItem("usuarioLogado", JSON.stringify(usuario));
     }
     retornarUsuarioLogado(): Object {
         let usuarioLogado: Object = JSON.parse(localStorage.getItem("usuarioLogado"));

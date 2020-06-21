@@ -5,6 +5,7 @@ import { CadastroPage } from '../cadastro/cadastro';
 import { Usuario } from '../../models/Usuario';
 import { UsuarioService } from '../../services/Usuario.service';
 import { ChamadoFuncionarioPage } from '../chamado-funcionario/chamado-funcionario';
+import { ChamadoService } from '../../services/Chamado.service';
 
 
 /**
@@ -24,7 +25,7 @@ export class LoginPage {
   usuario: Usuario = new Usuario();
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-    public usuarioServices: UsuarioService) {
+    public usuarioServices: UsuarioService, public chamadoServices: ChamadoService) {
       
   }
 
@@ -40,11 +41,13 @@ export class LoginPage {
       if(success[0].tipo == "Cliente"){  
         console.log(success[0].tipo);
         this.usuarioServices.logar(success);
+        this.chamadoServices.usuarioLogadoMethod();
         this.navCtrl.setRoot(ChamadoClientePage);
 
       }else if(success[0].tipo == "Funcionário"){
         console.log(success[0].tipo);
         this.usuarioServices.logar(success);
+        this.chamadoServices.usuarioLogadoMethod();
         this.navCtrl.setRoot(ChamadoFuncionarioPage);
       }
       //
@@ -54,6 +57,6 @@ export class LoginPage {
   }
 
   goCadastroPage(){
-    this.navCtrl.setRoot(CadastroPage);
+    this.navCtrl.push(CadastroPage);
   }
 }
