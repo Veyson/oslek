@@ -26,7 +26,7 @@ export class LoginPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public usuarioServices: UsuarioService, public chamadoServices: ChamadoService) {
-      
+      localStorage.clear();
   }
 
   ionViewDidLoad() {

@@ -16,6 +16,7 @@ import { Usuario } from '../../models/Usuario';
   selector: 'page-cadastro',
   templateUrl: 'cadastro.html',
 })
+
 export class CadastroPage {
 
   public usuario: Usuario = new Usuario();

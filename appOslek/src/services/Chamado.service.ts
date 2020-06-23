@@ -12,7 +12,8 @@ export class ChamadoService implements IChamadoService {
     public apiURL: string = Global.apiURL+"chamados";
 
     constructor(public usuarioService: UsuarioService, public http: HttpClient) {
-    
+        this.usuarioLogado = this.usuarioService.retornarUsuarioLogado();
+        console.log(this.usuarioLogado);
     }    
 
     usuarioLogadoMethod(): void{
@@ -29,8 +30,8 @@ export class ChamadoService implements IChamadoService {
             chamado.setor = "Biblioteca";
         }
         chamado.status = "Pendente";
-        chamado.usuario_id = this.usuarioLogado[0].id;
-        console.log(this.usuarioLogado[0].id);
+        chamado.usuario_id = this.usuarioLogado[0].usuario_id;
+        console.log(this.usuarioLogado[0].usuario_id);
         return this.http.post(this.apiURL, chamado);
 
     }
@@ -39,7 +40,7 @@ export class ChamadoService implements IChamadoService {
     }
 
     removerChamado(chamado: Chamado): Observable<Object> {
-        return this.http.delete(this.apiURL+"/"+chamado.id);
+        return this.http.delete(this.apiURL+"/"+chamado.chamado_id);
       }
 
     detalharChamado(chamado: Chamado): void{
@@ -57,6 +58,6 @@ export class ChamadoService implements IChamadoService {
     }
 
     atualizarUsuario(chamado: Chamado): Observable<Object> {
-         return this.http.put(this.apiURL+"/"+chamado.id, chamado);
+         return this.http.put(this.apiURL+"/"+chamado.chamado_id, chamado);
       }
 }

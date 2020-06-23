@@ -44,7 +44,7 @@ export class UsuarioService implements IUsuarioService {
         localStorage.removeItem("usuarioLogado");
     }
     removerUsuario(usuario: Usuario): Observable<Object> {
-        return this.http.delete(this.apiURL + "/" + usuario.id);
+        return this.http.delete(this.apiURL + "/" + usuario.usuario_id);
     }
   
 }

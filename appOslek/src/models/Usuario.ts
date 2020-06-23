@@ -1,5 +1,5 @@
 export class Usuario {
-    public id: number = null;
+    public usuario_id: number = null;
     public nome: string = null;
     public cpf: string = null;
     public email: string = null;

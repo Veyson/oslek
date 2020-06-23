@@ -1,7 +1,7 @@
 import { Usuario } from "./Usuario";
 
 export class Chamado {
-  public id: number = null;
+  public chamado_id: number = null;
   public titulo: string = null;
   public descricao: string = null;
   public status: string = null;
