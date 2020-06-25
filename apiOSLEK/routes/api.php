@@ -21,5 +21,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::resource('chamados', 'ChamadoController');
 Route::resource('users', 'UserController');
 Route::post('users/buscarusuario/', 'UserController@buscarUsuarioLogin');
-Route::post('users/buscarusuarioId/', 'UserController@buscarUsuarioId');
-  
+Route::post('users/buscarusuarioId/', 'UserController@buscarUsuarioId');  

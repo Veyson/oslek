@@ -1,37 +1,55 @@
-<!--
-  Generated template for the ChamadoDescricaoPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
-<ion-header>
-  <ion-navbar>
-    <ion-title>OSLEK</ion-title>
-  </ion-navbar>
-</ion-header>
-
-<ion-content padding>
-
-  <button ion-button icon-start class="voltar" (click)="goChamadoFuncionarioPage();">
-    <ion-icon name="arrow-back"></ion-icon>
-  </button>
-
-  <h4 class="titulo">Detalhes Chamado</h4>
+<ion-content>
   
-  <h1><strong>Titulo: {{ chamado.titulo }} </strong></h1>
-  <h2>Usuário: {{ chamado.usuario_id }} </h2>
-  <h2>Setor: {{ chamado.setor }} </h2>
-  <h2>Descrição:</h2>
-  <ion-item>
-    <ion-textarea readonly value="{{ chamado.descricao }}" rows="5"></ion-textarea>
-  </ion-item>
-  <ion-item>
-    <ion-label>Status</ion-label>
-    <ion-select>
-      <ion-option selected="true">Pendente</ion-option>
-      <ion-option>Em andamento</ion-option>
-      <ion-option>Concluido</ion-option>
-    </ion-select>
-  </ion-item>
+  <div class="background">
+    <!--Overlay-->
+    <div class="overlay">
+      <!--Container-->
+      <div>
+        <!--logo-->
+        <div class="center padding-top-40">
+          <img src='/assets/imgs/logo-oslek.png' class="logo-oslek"/>
+        </div>
+      
+        <!--Text-->
+        <div class="mg-top-30">
+          <!--Title-->
+          <h5 class="snow center bold no-margin">Titulo: {{ chamado.titulo }}</h5>       
+          <!--Usuario-->
+          <h5 class="snow center light no-margin mg-top-10">Usuário: {{ chamado.usuario.nome }}</h5>
+           <!--Setor-->
+          <h5 class="snow center light no-margin mg-top-20">Setor responsável pelo chamado: {{ chamado.setor }}</h5>
+        </div>
 
+        <div class="padding-20">
+          <!--Card & CTA-->
+          <ion-card class="bg-transparent-parcial mg-top-20 center">
+            <ion-card-header class="snow center light no-margin">
+              <strong>Descrição</strong>
+            </ion-card-header>
+            <ion-card-content class="center no-margin">      
+              <ion-item class="bg-transparent-parcial snow light center">
+                <ion-textarea readonly value="{{ chamado.descricao }}" rows="5"></ion-textarea>
+              </ion-item>     
+            </ion-card-content>
+          </ion-card>
+          
+          <ion-item class="bg-transparent no-padding mg-top-20">
+            <ion-label stacked class="snow bold">Status do chamado</ion-label>
+            <ion-select [(ngModel)]="chamado.status" cancelText="Cancelar" okText="Ok" class="light snow">
+              <ion-option value="1" selected="true">Pendente</ion-option>
+              <ion-option value="2">Em andamento</ion-option>
+              <ion-option value="3">Concluído</ion-option>
+            </ion-select>
+          </ion-item>
+
+          <div class="cta center bold mg-top-50" (click)="atualizarChamado();">
+            Atualizar situação
+          </div>
+          <div class="cta-alter center bold mg-top-10" (click)="goChamadoFuncionarioPage();">
+            Verifique seus chamados!
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>   
 </ion-content>

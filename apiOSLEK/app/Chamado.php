@@ -9,8 +9,10 @@ class Chamado extends Model
     //
     protected $table = 'chamados';
     protected $fillable = ['titulo','descricao', 'status', 'usuario_id', 'setor', 'created_at', 'updated_at'];
-
-    public function user(){
-        return $this->belongsTo('App\User', 'usuario_id');
+    protected $hidden = [];
+    
+    public function usuario()
+    {
+        return $this->belongsTo(User::class,'usuario_id','id');
     }
 }

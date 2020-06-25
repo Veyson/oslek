@@ -14,13 +14,13 @@ class CreateChamadosTable extends Migration
     public function up()
     {
         Schema::create('chamados', function (Blueprint $table) {
-            $table->id('chamado_id');
+            $table->id();
             $table->string('titulo');
             $table->string('descricao');
             $table->string('status');
             $table->string('setor');
             $table->unsignedBigInteger('usuario_id');
-            $table->foreign('usuario_id')->references('usuario_id')->on('usuarios');
+            $table->foreign('usuario_id')->references('id')->on('usuarios');
 
             $table->timestamps();
         });

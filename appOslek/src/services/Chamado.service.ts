@@ -30,8 +30,8 @@ export class ChamadoService implements IChamadoService {
             chamado.setor = "Biblioteca";
         }
         chamado.status = "Pendente";
-        chamado.usuario_id = this.usuarioLogado[0].usuario_id;
-        console.log(this.usuarioLogado[0].usuario_id);
+        chamado.usuario_id = this.usuarioLogado[0].id;
+        console.log(this.usuarioLogado[0].id);
         return this.http.post(this.apiURL, chamado);
 
     }
@@ -40,7 +40,7 @@ export class ChamadoService implements IChamadoService {
     }
 
     removerChamado(chamado: Chamado): Observable<Object> {
-        return this.http.delete(this.apiURL+"/"+chamado.chamado_id);
+        return this.http.delete(this.apiURL+"/"+chamado.id);
       }
 
     detalharChamado(chamado: Chamado): void{
@@ -57,7 +57,14 @@ export class ChamadoService implements IChamadoService {
         localStorage.removeItem("detalharChamado");
     }
 
-    atualizarUsuario(chamado: Chamado): Observable<Object> {
-         return this.http.put(this.apiURL+"/"+chamado.chamado_id, chamado);
+    atualizarChamado(chamado: Chamado): Observable<Object> {
+        if ( chamado.status == "1"){
+            chamado.status = "Pendente";
+        }else if ( chamado.status == "2"){
+            chamado.status = "Em andamento";
+        }else if ( chamado.status == "3"){
+            chamado.status = "Concluído"
+        }
+        return this.http.put(this.apiURL+"/"+chamado.id, chamado);
       }
 }

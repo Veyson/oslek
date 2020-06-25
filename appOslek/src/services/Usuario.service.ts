@@ -13,6 +13,7 @@ export class UsuarioService implements IUsuarioService {
         if (!usuario.nome) throw new Error("O campo nome é obrigatório.");
         if (!usuario.cpf) throw new Error("O campo cpf é obrigatório.");
         if (!usuario.email) throw new Error("O campo email é obrigatório.");
+        if (!this.validateEmail(usuario.email)) throw new Error("Utilize e-mail valido");
         if (!usuario.senha) throw new Error("O campo senha é obrigatório.");
         if (!usuario.tipo) {
             usuario.tipo = "Cliente";
@@ -24,6 +25,7 @@ export class UsuarioService implements IUsuarioService {
     }
     authUsuario(usuario: Usuario): Observable<Object> {
         if (!usuario.email) throw new Error("O campo email é obrigatório.");
+        if (!this.validateEmail(usuario.email)) throw new Error("Utilize e-mail valido");
         if (!usuario.senha) throw new Error("O campo senha é obrigatório.");
         return this.http.post(this.apiURL +"/buscarusuario/", usuario);
     }
@@ -44,7 +46,13 @@ export class UsuarioService implements IUsuarioService {
         localStorage.removeItem("usuarioLogado");
     }
     removerUsuario(usuario: Usuario): Observable<Object> {
-        return this.http.delete(this.apiURL + "/" + usuario.usuario_id);
+        return this.http.delete(this.apiURL + "/" + usuario.id);
     }
   
-}
+    //////////////////////////////////
+
+    validateEmail(email) {
+        const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(email);
+      }
+}  

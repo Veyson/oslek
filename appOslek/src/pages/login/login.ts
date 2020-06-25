@@ -1,28 +1,61 @@
 import { Component} from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { ChamadoClientePage } from '../chamado-cliente/chamado-cliente';
-import { CadastroPage } from '../cadastro/cadastro';
 import { Usuario } from '../../models/Usuario';
 import { UsuarioService } from '../../services/Usuario.service';
 import { ChamadoFuncionarioPage } from '../chamado-funcionario/chamado-funcionario';
 import { ChamadoService } from '../../services/Chamado.service';
 
-
-/**
- * Generated class for the LoginPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { trigger, style, animate, transition } from '@angular/animations';
 
 @IonicPage()
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html',
+  animations: [
+    trigger(
+      'login', [
+        transition(':enter', [
+          style({
+            opacity: 0
+          }),
+          animate("1s ease-in-out", style({
+            opacity: 1
+          }))
+        ]),
+        transition(':leave', [
+          style({
+            opacity: 0
+          })
+        ])
+      ],
+    ),
+    trigger(
+      'registro', [
+        transition(':enter', [
+          style({
+            opacity: 0
+          }),
+          animate("1s ease-in-out", style({
+            opacity: 1
+          }))
+        ]),
+        transition(':leave', [
+          style({
+            opacity: 0
+          })
+        ])
+      ],
+    ),
+  ]
+
 })
 export class LoginPage {
 
-  usuario: Usuario = new Usuario();
+  login = true;
+  cadastro = false;
+
+  public usuario: Usuario = new Usuario();
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public usuarioServices: UsuarioService, public chamadoServices: ChamadoService) {
@@ -35,8 +68,6 @@ export class LoginPage {
 
   
   goOpenSystem(){
-    console.log(this.usuario.email);
-    console.log(this.usuario.email);
     this.usuarioServices.authUsuario(this.usuario).subscribe((success) => {
       if(success[0].tipo == "Cliente"){  
         console.log(success[0].tipo);
@@ -56,7 +87,22 @@ export class LoginPage {
     });
   }
 
-  goCadastroPage(){
-    this.navCtrl.push(CadastroPage);
+  cadastrarUsuario() {
+    this.usuarioServices.criarUsuario(this.usuario).subscribe((success) => {
+      console.log(success);
+      this.navCtrl.setRoot(LoginPage);
+    }, (error) => {
+      console.log(error);
+    });
+  }
+
+  exibirRegistrar(){
+    this.login = false;
+    this.cadastro = true;
+  }
+
+  exibirLogin(){
+    this.login = true;
+    this.cadastro = false;
   }
 }

@@ -16,7 +16,9 @@ class ChamadoController extends Controller
     public function index()
     {
         //
-        $chamados = Chamado::all();
+        //$list_chamados = Chamado::all();
+        //return $chamados;
+        $chamados = Chamado::with('usuario')->get();
         return $chamados;
     }
 

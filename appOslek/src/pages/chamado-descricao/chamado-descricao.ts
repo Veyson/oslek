@@ -34,5 +34,12 @@ export class ChamadoDescricaoPage {
     this.navCtrl.setRoot(ChamadoFuncionarioPage);
   }
    
+  atualizarChamado() {
+    this.chamadoServices.atualizarChamado(this.chamado).subscribe((response) => {
+      console.log(response);
+    }, error => {
+      console.log(error);
+    });
+  }
 
 }

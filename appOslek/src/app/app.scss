@@ -1,98 +1,111 @@
-// http://ionicframework.com/docs/theming/
-
-// App Global Sass
-// --------------------------------------------------
-// Put style rules here that you want to apply globally. These
-// styles are for the entire app and not just one component.
-// Additionally, this file can be also used as an entry point
-// to import other Sass files to be included in the output CSS.
-//
-// Shared Sass variables, which can be used to adjust Ionic's
-// default Sass variables, belong in "theme/variables.scss".
-//
-// To declare rules for a specific mode, create a child rule
-// for the .md, .ios, or .wp mode classes. The mode class is
-// automatically applied to the <body> element in the app.
-$corPrincipal: rgb(0, 0, 0);
-$corSecundaria: rgb(0, 0, 0);
-
-.fixed-content {
+//import FONT
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,700;1,300&display=swap');
+//FONT Global
+*{
+  font-family: 'Montserrat', sans-serif;
+}
+//Background
+.background{
+  width: 100%;
+  height: fit-content;
+  background-image: url('/assets/imgs/bg-oslek.gif');
+  background-size: cover;
+  background-position: center;
+}
+//Overlay
+.overlay{
+  width: 100%;
+  height: fit-content;
+  background: linear-gradient(to top,rgb(0,0,0),rgba(0, 0, 0, 0.900), rgba(0, 0, 0, 0.800), rgba(0, 0, 0, 0.716));
+}
+//Actions-Button
+.cta{
+  padding: 15px;
+  background: $purple;
+  border-radius: 100px;
+  color: $snow;
+}
+.cta-alter{
+  padding: 15px;
+  background: $gray;
+  border-radius: 100px;
+  color: $purple;
+}
+//import COLORS
+.purple{
+  color: $purple;
+}
+.orange{
+  color: $orange;
+}
+.dark{
+  color: $dark;
+}
+.snow{
+  color: $snow;
+}
+.gray{
+  color: $gray;
+}
+//centralizar
+.center{
+  text-align: center;
+}
+//margem
+.no-margin{
+  margin: 0px;
+}
+.mg-top-5{
+  margin-top: 5px;
+}
+.mg-top-10{
+  margin-top: 10px;
+}
+.mg-top-20{
+  margin-top: 20px;
+}
+.mg-top-30{
+  margin-top: 30px;
+}
+.mg-top-40{
+  margin-top: 40px;
+}
+.mg-top-50{
+  margin-top: 50px;
+}
+.mg-top-60{
+  margin-top: 60px;
+}
+//Padding
+.padding-top-40{
+  padding-top: 40px;
+}
+.padding-top-80{
+  padding-top: 80px;
+}
+.padding-20{
+  padding: 20px;
+}
+.padding-40{
+  padding: 40px;
+}
+.no-padding{
+  padding: 0px;
 }
 
-ion-input {
-    opacity: 0.5 !important;
+//Font style
+.bold{
+  font-weight: 700;
+}
+.light{
+  font-weight: 300;
 }
 
-.toolbar-background {
-    background-color: $corPrincipal !important;
+//Modificando INPUT // ion-item
+.bg-transparent{
+  background: transparent;
 }
-
-.toolbar-title {
-    color: white;
-    font-family: "Fredoka One", cursive;
-    text-align: center;
-    font-size: 30px;
+.bg-transparent-parcial{
+  background: linear-gradient(to top,rgba(255,255,255,0.200),rgba(255,255,255,0.300), rgba(255,255,255,0.250), rgba(255,255,255,0.200));
 }
-
-.botao {
-    &.button-md {
-        background-color: black;
-    }
-    &.activated {
-        background-color: rgb(66, 66, 66) !important;
-    }
-}
-
-.voltar {
-    background-color: rgb(200, 0, 0) !important;
-    &.activated {
-        background-color: rgb(90, 0, 0) !important;
-    }
-}
-
-.titulo {
-    margin-top: 15px !important;
-    text-align: center;
-    font-size: 30px;
-}
-
-//ION-SELECT
-
-ion-select {
-    width: 100%;
-  
-    justify-content: center;
-  }
-  
-  /* Set the flex in order to size the text width to its content */
-  ion-select::part(placeholder),
-  ion-select::part(text) {
-    flex: 0 0 auto;
-  }
-  
-  /* Set the placeholder color and opacity */
-  ion-select::part(placeholder) {
-    color: #20a08a;
-    opacity: 1;
-  }
-  
-  /*
-   * Set the font of the first letter of the placeholder
-   * Shadow parts work with pseudo-elements, too!
-   * https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-elements
-   */
-  ion-select::part(placeholder)::first-letter {
-    font-size: 24px;
-    font-weight: 500;
-  }
-  
-  /* Set the text color */
-  ion-select::part(text) {
-    color: #545ca7;
-  }
-  
-  /* Set the icon color and opacity */
-  ion-select::part(icon) {
-    color: #971e49;
-    opacity: 1;
-  }
+//Modificando CARD // ion-item

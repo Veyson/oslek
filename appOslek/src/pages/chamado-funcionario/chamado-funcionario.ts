@@ -1,11 +1,10 @@
-import { Component, ViewChild} from '@angular/core';
-import { IonicPage, NavController, NavParams, Content, Refresher } from 'ionic-angular';
+import { Component} from '@angular/core';
+import { IonicPage, NavController, NavParams} from 'ionic-angular';
 import { LoginPage } from '../login/login';
 import { ChamadoDescricaoPage } from '../chamado-descricao/chamado-descricao';
 import { ChamadoService } from '../../services/Chamado.service';
 import { Chamado } from '../../models/Chamado';
 import { UsuarioService } from '../../services/Usuario.service';
-import { Usuario } from '../../models/Usuario';
 
 /**
  * Generated class for the ChamadoFuncionarioPage page.
@@ -42,7 +41,7 @@ export class ChamadoFuncionarioPage {
 
   goChamadoDescricaoPage(chamado: Chamado){
     this.chamadoServices.detalharChamado(chamado);
-    this.navCtrl.push(ChamadoDescricaoPage);
+    this.navCtrl.setRoot(ChamadoDescricaoPage);
   }
 
   logout() {

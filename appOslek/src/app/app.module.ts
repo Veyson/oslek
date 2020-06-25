@@ -6,19 +6,19 @@ import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
 import { LoginPage } from '../pages/login/login';
-import { CadastroPage } from '../pages/cadastro/cadastro';
 import { ChamadoClientePage } from '../pages/chamado-cliente/chamado-cliente';
 import { ChamadoFuncionarioPage } from '../pages/chamado-funcionario/chamado-funcionario';
 import { ChamadoDescricaoPage } from '../pages/chamado-descricao/chamado-descricao';
 import { UsuarioService } from '../services/Usuario.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ChamadoService } from '../services/Chamado.service';
+import { BrMaskerModule } from 'brmasker-ionic-3';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
     MyApp,
     LoginPage,
-    CadastroPage,
     ChamadoClientePage,
     ChamadoFuncionarioPage,
     ChamadoDescricaoPage,
@@ -26,13 +26,14 @@ import { ChamadoService } from '../services/Chamado.service';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    HttpClientModule
+    HttpClientModule,
+    BrMaskerModule,
+    BrowserAnimationsModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     LoginPage,
-    CadastroPage,
     ChamadoClientePage,
     ChamadoFuncionarioPage,
     ChamadoDescricaoPage,
