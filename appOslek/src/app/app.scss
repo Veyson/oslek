@@ -4,18 +4,22 @@
 *{
   font-family: 'Montserrat', sans-serif;
 }
+.ion-toggle-c {
+  --handle-spacing: 0px;
+  --handle-height: 100%;
+}
 //Background
-.background{
-  width: 100%;
-  height: fit-content;
+.fixed-content{
+  //width: 100%;
+  //height: fit-content;
   background-image: url('/assets/imgs/bg-oslek.gif');
   background-size: cover;
   background-position: center;
 }
 //Overlay
-.overlay{
-  width: 100%;
-  height: fit-content;
+.scroll-content{
+  width: auto;
+  height: auto;
   background: linear-gradient(to top,rgb(0,0,0),rgba(0, 0, 0, 0.900), rgba(0, 0, 0, 0.800), rgba(0, 0, 0, 0.716));
 }
 //Actions-Button
@@ -83,6 +87,9 @@
 .padding-top-80{
   padding-top: 80px;
 }
+.padding-left-80{
+  padding-left: 80px;
+}
 .padding-20{
   padding: 20px;
 }
@@ -92,7 +99,10 @@
 .no-padding{
   padding: 0px;
 }
-
+//border
+.border-radius{
+  border-radius: 20px;
+}
 //Font style
 .bold{
   font-weight: 700;
@@ -107,5 +117,8 @@
 }
 .bg-transparent-parcial{
   background: linear-gradient(to top,rgba(255,255,255,0.200),rgba(255,255,255,0.300), rgba(255,255,255,0.250), rgba(255,255,255,0.200));
+}
+.bg-color{
+  background: $purple;
 }
 //Modificando CARD // ion-item

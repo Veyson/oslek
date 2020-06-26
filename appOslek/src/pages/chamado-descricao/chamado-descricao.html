@@ -13,22 +13,24 @@
         <!--Text-->
         <div class="mg-top-30">
           <!--Title-->
-          <h5 class="snow center bold no-margin">Titulo: {{ chamado.titulo }}</h5>       
+          <h5 class="snow center bold no-margin">{{ chamado.titulo }}</h5>       
           <!--Usuario-->
-          <h5 class="snow center light no-margin mg-top-10">Usuário: {{ chamado.usuario.nome }}</h5>
+          <h5 class="snow center light no-margin mg-top-20">{{ chamado.usuario.nome }}</h5>
            <!--Setor-->
-          <h5 class="snow center light no-margin mg-top-20">Setor responsável pelo chamado: {{ chamado.setor }}</h5>
+          <h5 class="snow center light no-margin mg-top-20">{{ chamado.setor }}</h5>
+          <!--Data-->
+          <h5 class="snow center light no-margin mg-top-20">{{chamado.created_at}}</h5>
         </div>
 
         <div class="padding-20">
           <!--Card & CTA-->
-          <ion-card class="bg-transparent-parcial mg-top-20 center">
+          <ion-card class="bg-color mg-top-10 center border-radius">
             <ion-card-header class="snow center light no-margin">
               <strong>Descrição</strong>
             </ion-card-header>
-            <ion-card-content class="center no-margin">      
-              <ion-item class="bg-transparent-parcial snow light center">
-                <ion-textarea readonly value="{{ chamado.descricao }}" rows="5"></ion-textarea>
+            <ion-card-content>      
+              <ion-item class="bg-transparent-parcial no-margin border-radius">
+                <ion-textarea class=" snow light center" readonly value="{{ chamado.descricao }}" rows="5"></ion-textarea>
               </ion-item>     
             </ion-card-content>
           </ion-card>

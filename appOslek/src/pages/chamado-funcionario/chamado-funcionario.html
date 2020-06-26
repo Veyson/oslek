@@ -9,22 +9,28 @@
         <div class="center padding-top-40">
           <img src='/assets/imgs/logo-oslek.png' class="logo-oslek"/>
         </div>
-      
-        <!--Text-->
-        <div class="mg-top-30">
-          <!--Title-->
-          <h5 class="snow center bold no-margin">Vamos trabalhar?</h5>       
-          <!--Subtitle-->
-          <h5 class="snow center light no-margin mg-top-10">Abaixo você poderá verificar os chamados abertos.</h5>
-        </div>
 
         <div class="padding-20">
+          <!--Text-->
+          <div class="mg-top-30">
+            <!--Title-->
+            <h5 class="snow center bold no-margin">Vamos trabalhar?</h5>       
+            <!--Subtitle-->
+            <h5 class="snow center light no-margin mg-top-10">Abaixo você poderá verificar os chamados abertos.</h5>
+          </div>
+
+          <div class="mg-top-30 center">
+            <ion-badge color="primary">{{chamados.length}}</ion-badge>
+            <ion-badge color="danger">{{chamados.length}}</ion-badge>
+            <ion-badge color="secondary">{{chamados.length}}</ion-badge>
+          </div>
+
           <!--Aviso-->
           <div *ngIf="chamados.length == 0" class="mg-top-20">
             <p class="snow center light no-margin">Você ainda não possui um chamado.</p>
           </div>
           <!--Card & CTA-->
-          <ion-card class="bg-transparent-parcial mg-top-20 center" *ngFor="let chamado of chamados" (click)="goChamadoDescricaoPage(chamado);">
+          <ion-card class="bg-transparent-parcial mg-top-20 center border-radius" *ngFor="let chamado of chamados"(click)="goChamadoDescricaoPage(chamado);">
             <ion-card-header class="snow center light no-margin">
               {{ chamado.titulo }} - {{ chamado.status }}
             </ion-card-header>
