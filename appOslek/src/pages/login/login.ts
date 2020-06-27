@@ -73,16 +73,14 @@ export class LoginPage {
       if(success[0].tipo == "Cliente"){  
         console.log(success[0].tipo);
         this.usuarioServices.logar(success);
-        //this.chamadoServices.usuarioLogadoMethod();
         this.navCtrl.setRoot(ChamadoClientePage);
 
       }else if(success[0].tipo == "Funcionário"){
         console.log(success[0].tipo);
         this.usuarioServices.logar(success);
-        //this.chamadoServices.usuarioLogadoMethod();
         this.navCtrl.setRoot(ChamadoFuncionarioPage);
       }
-      //
+      
     }, (error) => {
       console.log(error);
     });

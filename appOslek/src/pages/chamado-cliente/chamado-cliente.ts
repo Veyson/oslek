@@ -20,6 +20,9 @@ import { UsuarioService } from '../../services/Usuario.service';
 })
 export class ChamadoClientePage {
 
+  public titulo: any;
+  public descricao: any;
+  public setor: any;
   public chamado: Chamado = new Chamado();
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
@@ -32,8 +35,14 @@ export class ChamadoClientePage {
 
 
   registrarChamado() {
+    this.chamado.titulo = this.titulo;
+    this.chamado.descricao = this.descricao;
+    this.chamado.setor = this.setor;
     this.chamadoServices.criarChamados(this.chamado).subscribe((success) => {
       console.log(success);
+      this.titulo = "";
+      this.descricao = "";
+      this.setor = "";
     }, (error) => {
       console.log(error);
     });

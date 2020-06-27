@@ -22,9 +22,13 @@ import { UsuarioService } from '../../services/Usuario.service';
 export class ChamadoFuncionarioPage {
 
   public chamados: Array<Chamado> = new Array<Chamado>();
+  public countConcluido: any;
+  public countEmAndamento: any;
+  public countPendente: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public chamadoServices: ChamadoService, public usuarioServices: UsuarioService) {
+      this.contarChamados();
       this.buscarChamados();
   }
 
@@ -32,6 +36,17 @@ export class ChamadoFuncionarioPage {
     this.chamadoServices.listarChamados().subscribe((response) => {
       this.chamados = <Chamado[]> response;
     }, (erro) => {
+      console.log(erro);
+    });
+  }
+
+  contarChamados(){
+    this.chamadoServices.contarChamados().subscribe((response:any)=>{
+      console.log(response);
+      this.countConcluido = response.concluido;
+      this.countEmAndamento = response.emAndamento;
+      this.countPendente = response.pendente;
+    }, (erro)=>{
       console.log(erro);
     });
   }

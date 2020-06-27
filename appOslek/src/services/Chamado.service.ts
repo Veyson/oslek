@@ -17,10 +17,6 @@ export class ChamadoService implements IChamadoService {
         console.log(this.usuarioLogado);
     }    
 
-    //usuarioLogadoMethod(): void{
-    //   this.usuarioLogado = this.usuarioService.retornarUsuarioLogado();
-    //    console.log(this.usuarioLogado);
-    //}
     criarChamados(chamado: Chamado): Observable<Object> {
 
         if ( !chamado.titulo ) throw new Error("O campo titulo é obrigatório.");
@@ -51,6 +47,10 @@ export class ChamadoService implements IChamadoService {
 
     listarChamados(): Observable<Object> {
         return this.http.get(this.apiURL);
+    }
+
+    contarChamados(): Observable<Object> {
+        return this.http.get(this.apiURL+"/status");
     }
 
     removerChamado(chamado: Chamado): Observable<Object> {

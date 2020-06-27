@@ -25,9 +25,13 @@ class UserController extends Controller
         
         $email = $request->input('email');
         $senha = $request->input('senha');
+        $usuario = User::where('email', $email)->first();
         
-        $usuario = User::where('email', $email)->where('senha', $senha)->get();
-        return $usuario;
+        if(Hash::check($senha, $usuario->senha)){
+            return User::where('email', $email)->where('senha', $usuario->senha)->get();
+        }else{
+            return response('Login inválido!');
+        }
     }
 
     /**
@@ -139,7 +143,7 @@ class UserController extends Controller
             $existe = User::where('email', $email)->get();
             if ($existe->isNotEmpty()) return response('Já existe um usuário com esse email.', 400);
 
-            $usuario = Usuario::find($id);
+            $usuario = User::find($id);
             $usuario->nome = $request->nome;
             $usuario->cpf = $request->cpf;
             $usuario->email = $request->email; 

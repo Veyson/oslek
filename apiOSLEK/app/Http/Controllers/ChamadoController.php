@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Chamado;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Exception;
+use stdClass;
 
 class ChamadoController extends Controller
 {
@@ -19,10 +21,17 @@ class ChamadoController extends Controller
         return $chamados;
     }
 
-    public function buscarChamadoUsuarioID($id) {
-        $chamados = Chamado::where('usuario_id', $id)->get();
-        return $chamados;
+    public function countStatusChamados(){
+        $status = new stdClass();
+        $pendente = Chamado::where('status','Pendente')->count();
+        $emAndamento = Chamado::where('status','Em andamento')->count();
+        $concluido = Chamado::where('status','Concluído')->count();
 
+        $status->pendente = $pendente;
+        $status->emAndamento = $emAndamento;
+        $status->concluido = $concluido;
+
+        return response()->json($status);
     }
 
     /**
