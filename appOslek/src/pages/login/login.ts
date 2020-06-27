@@ -7,7 +7,8 @@ import { ChamadoFuncionarioPage } from '../chamado-funcionario/chamado-funcionar
 import { ChamadoService } from '../../services/Chamado.service';
 
 import { trigger, style, animate, transition } from '@angular/animations';
-import { ValidarCpf } from './ValidarCpf';
+import { ValidarCpf } from '../../validation/ValidarCpf';
+import { IonLoading } from '../../async/IonLoading';
 
 @IonicPage()
 @Component({
@@ -54,13 +55,16 @@ import { ValidarCpf } from './ValidarCpf';
 })
 export class LoginPage {
 
-  login = true;
-  cadastro = false;
+  login:boolean = true;
+  cadastro:boolean = false;
 
   public usuario: Usuario = new Usuario();
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,
-    public usuarioServices: UsuarioService, public chamadoServices: ChamadoService) {
+  constructor(public navCtrl: NavController, 
+    public navParams: NavParams,
+    public loadingController: LoadingController,
+    public usuarioServices: UsuarioService, 
+    public chamadoServices: ChamadoService) {
     localStorage.clear();
   }
 
@@ -69,19 +73,23 @@ export class LoginPage {
   }
 
   goOpenSystem() {
+    IonLoading.presentLoading("Acessando sistema...", this.loadingController);
     this.usuarioServices.login(this.usuario).subscribe((success) => {
       if (success[0].tipo == "Cliente") {
         console.log(success[0].tipo);
         this.usuarioServices.logar(success);
+        IonLoading.dismissLoading();
         this.navCtrl.setRoot(ChamadoClientePage);
 
       } else if (success[0].tipo == "Funcionário") {
         console.log(success[0].tipo);
         this.usuarioServices.logar(success);
+        IonLoading.dismissLoading();
         this.navCtrl.setRoot(ChamadoFuncionarioPage);
       }
 
     }, (error) => {
+      IonLoading.dismissLoading();
       console.log(error);
     });
   }
@@ -95,14 +103,18 @@ export class LoginPage {
   }
 
   cadastrarUsuario() {
+    IonLoading.presentLoading("Autenticando dados...", this.loadingController);
     if (this.validCpf(this.usuario)) {
       this.usuarioServices.criarUsuario(this.usuario).subscribe((success) => {
         console.log(success);
+        IonLoading.dismissLoading();
         this.navCtrl.setRoot(LoginPage);
       }, (error) => {
+        IonLoading.dismissLoading();
         console.log(error);
       });
     }else{
+      IonLoading.dismissLoading();
       console.log("CPF inválido!")
     }
   }

@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { ChamadoFuncionarioPage } from '../chamado-funcionario/chamado-funcionario';
 import { ChamadoService } from '../../services/Chamado.service';
 import { Chamado } from '../../models/Chamado';
+import { IonLoading } from '../../async/IonLoading';
 
 /**
  * Generated class for the ChamadoDescricaoPage page.
@@ -20,7 +21,9 @@ import { Chamado } from '../../models/Chamado';
 export class ChamadoDescricaoPage {
 
   public chamado: Chamado = new Chamado();
-  constructor(public navCtrl: NavController, public navParams: NavParams, 
+  constructor(public navCtrl: NavController,
+    public navParams: NavParams,
+    public loadingController: LoadingController, 
     public chamadoServices: ChamadoService) {
     this.chamado = this.chamadoServices.retornarChamadoDetalhado();
     console.log(this.chamado);
@@ -36,10 +39,13 @@ export class ChamadoDescricaoPage {
   }
    
   atualizarChamado() {
+    IonLoading.presentLoading("Atualizando chamado...", this.loadingController);
     this.chamadoServices.atualizarChamado(this.chamado).subscribe((response) => {
       console.log(response);
+      IonLoading.dismissLoading();
     }, error => {
       console.log(error);
+      IonLoading.dismissLoading();
     });
   }
 

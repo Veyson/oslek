@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { LoginPage } from '../login/login';
 import { Chamado } from '../../models/Chamado';
 import { ChamadoService } from '../../services/Chamado.service';
 import { UsuarioService } from '../../services/Usuario.service';
+import { IonLoading } from '../../async/IonLoading';
 
 /**
  * Generated class for the ChamadoClientePage page.
@@ -25,8 +26,11 @@ export class ChamadoClientePage {
   public setor: any;
   public chamado: Chamado = new Chamado();
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,
-    public chamadoServices: ChamadoService, public usuarioServices: UsuarioService) {
+  constructor(public navCtrl: NavController, 
+    public navParams: NavParams,
+    public loadingController: LoadingController,
+    public chamadoServices: ChamadoService, 
+    public usuarioServices: UsuarioService) {
   }
 
   ionViewDidLoad() {
@@ -35,6 +39,7 @@ export class ChamadoClientePage {
 
 
   registrarChamado() {
+    IonLoading.presentLoading("Registrando chamado...", this.loadingController);
     this.chamado.titulo = this.titulo;
     this.chamado.descricao = this.descricao;
     this.chamado.setor = this.setor;
@@ -43,8 +48,10 @@ export class ChamadoClientePage {
       this.titulo = "";
       this.descricao = "";
       this.setor = "";
+      IonLoading.dismissLoading();
     }, (error) => {
       console.log(error);
+      IonLoading.dismissLoading();
     });
     
   }

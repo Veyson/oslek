@@ -13,7 +13,7 @@ import { UsuarioService } from '../services/Usuario.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ChamadoService } from '../services/Chamado.service';
 import { BrMaskerModule } from 'brmasker-ionic-3';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -28,7 +28,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     IonicModule.forRoot(MyApp),
     HttpClientModule,
     BrMaskerModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
