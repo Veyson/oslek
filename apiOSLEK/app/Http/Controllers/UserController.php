@@ -67,17 +67,9 @@ class UserController extends Controller
             $existe = User::where('email', $email)->get();
             if ($existe->isNotEmpty()) return response('Já existe um usuário com esse email.', 400);
             
-            $usuario = new User();
-            $usuario->nome = $nome;
-            $usuario->cpf = $cpf;
-            $usuario->email = $email;
-            $usuario->senha = $senha;
-            $usuario->confirmarSenha = $confirmarSenha;
-            $usuario->tipo = $tipo;
-
-            if ($usuario->senha !== $confirmarSenha) return response('As senhas não coincidem.', 400);
+            if ($senha !== $confirmarSenha) return response('As senhas não coincidem.', 400);
             
-            $usuario->senha = Hash::make($usuario->senha);
+            $senha = Hash::make($senha);
 
             $usuario = User::create([
                 'nome' => $nome,
