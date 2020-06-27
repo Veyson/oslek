@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -26,17 +26,10 @@ class UserController extends Controller
         $email = $request->input('email');
         $senha = $request->input('senha');
         
-        $usuarios = User::where('email', $email)->where('senha', $senha)->get();
-        return $usuarios;
-    }
-
-    public function buscarUsuarioId(Request $request) {
-        
-        $id = $request->input('id');
-        
-        $usuario = User::where('id', $id)->get();
+        $usuario = User::where('email', $email)->where('senha', $senha)->get();
         return $usuario;
     }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -61,23 +54,37 @@ class UserController extends Controller
             $cpf = $request->input('cpf');
             $email = $request->input('email');
             $senha = $request->input('senha');
+            $confirmarSenha = $request->input('confirmarSenha');
             $tipo = $request->input('tipo');
 
             if (!$nome) return response('O Campo nome é obrigatório.', 400);
             if (!$cpf) return response('O Campo CPF é obrigatório.', 400);
             if (!$email) return response('O Campo email é obrigatório.', 400);
             if (!$senha) return response('O Campo senha é obrigatório.', 400);
+            if (!$confirmarSenha) return response('O campo confirmar senha é obrigatório.', 400);
             if (!$tipo) return response('O Campo tipo de usuário é obrigatório.', 400);
 
             $existe = User::where('email', $email)->get();
-
             if ($existe->isNotEmpty()) return response('Já existe um usuário com esse email.', 400);
             
+            $usuario = new User();
+            $usuario->nome = $nome;
+            $usuario->cpf = $cpf;
+            $usuario->email = $email;
+            $usuario->senha = $senha;
+            $usuario->confirmarSenha = $confirmarSenha;
+            $usuario->tipo = $tipo;
+
+            if ($usuario->senha !== $confirmarSenha) return response('As senhas não coincidem.', 400);
+            
+            $usuario->senha = Hash::make($usuario->senha);
+
             $usuario = User::create([
                 'nome' => $nome,
                 'cpf' => $cpf,
                 'email' => $email,
                 'senha' => $senha,
+                'confirmarSenha' => $confirmarSenha,
                 'tipo' => $tipo
             ]);
 
@@ -97,7 +104,7 @@ class UserController extends Controller
     public function show(User $usuario)
     {
         //
-        return $usuario;
+        return User::find($id);
     }
 
     /**
@@ -130,19 +137,25 @@ class UserController extends Controller
             if (!$nome) return response('O Campo nome é obrigatório.', 400);
             if (!$cpf) return response('O Campo CPF é obrigatório.', 400);
             if (!$email) return response('O Campo email é obrigatório.', 400);
-            if (!$senha) return response('O Campo senha é obrigatório.', 400);
+            if ($senha) {
+                $confirmarSenha = $request->input('confirmarSenha');
+                if (!$confirmarSenha) return response('O campo confirmar senha é obrigatório.', 400);
+                if ($confirmarSenha !== $senha) return response('As senhas não coincidem.', 400);
+            }
             if (!$tipo) return response('O Campo tipo de usuário é obrigatório.', 400);
            
             $existe = User::where('email', $email)->get();
-
             if ($existe->isNotEmpty()) return response('Já existe um usuário com esse email.', 400);
-        
+
+            $usuario = Usuario::find($id);
             $usuario->nome = $request->nome;
             $usuario->cpf = $request->cpf;
             $usuario->email = $request->email; 
-            $usuario->senha = $request->senha;
             $usuario->tipo = $request->tipo;
             
+            if ($senha) {
+                $usuario->senha = Hash::make($senha);
+            }
 
             $usuario->save();
 
@@ -161,6 +174,10 @@ class UserController extends Controller
      */
     public function destroy(User $usuario)
     {
-        User::where('id', $usuario->id)->delete();
+        try {
+            User::where('id', $usuario->id)->delete();
+        } catch(Exception $e) {
+            return response($e->getMessage(), 400);
+        }
     }
 }

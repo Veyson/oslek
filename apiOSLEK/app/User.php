@@ -10,7 +10,7 @@ class User extends Authenticatable
 {
     //
     protected $table = 'usuarios';
-    protected $fillable = ['nome','cpf', 'email', 'senha', 'tipo', 'created_at', 'updated_at'];
+    protected $fillable = ['nome','cpf', 'email', 'senha', 'confirmarSenha', 'tipo', 'created_at', 'updated_at'];
     protected $hidden = [];
 
     public function chamados()

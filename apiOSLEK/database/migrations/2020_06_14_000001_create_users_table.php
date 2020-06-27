@@ -19,8 +19,9 @@ class CreateUsersTable extends Migration
             $table->string('cpf')->unique();
             $table->string('email')->unique();
             $table->string('senha');
+            $table->string('confirmarSenha');
             $table->string('tipo');
-            $table->timestamps();
+            $table->timestamps();  
         });
     }
 

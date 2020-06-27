@@ -15,6 +15,7 @@ import { Chamado } from '../../models/Chamado';
 @Component({
   selector: 'page-chamado-descricao',
   templateUrl: 'chamado-descricao.html',
+  providers: [ChamadoService]
 })
 export class ChamadoDescricaoPage {
 

@@ -4,6 +4,7 @@ export class Usuario {
     public cpf: string = null;
     public email: string = null;
     public senha: string = null;
+    public confirmarSenha: string = null;
     public tipo: string = null; 
 
 }

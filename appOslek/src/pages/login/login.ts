@@ -12,6 +12,7 @@ import { trigger, style, animate, transition } from '@angular/animations';
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html',
+  providers: [UsuarioService],
   animations: [
     trigger(
       'login', [
@@ -68,17 +69,17 @@ export class LoginPage {
 
   
   goOpenSystem(){
-    this.usuarioServices.authUsuario(this.usuario).subscribe((success) => {
+    this.usuarioServices.login(this.usuario).subscribe((success) => {
       if(success[0].tipo == "Cliente"){  
         console.log(success[0].tipo);
         this.usuarioServices.logar(success);
-        this.chamadoServices.usuarioLogadoMethod();
+        //this.chamadoServices.usuarioLogadoMethod();
         this.navCtrl.setRoot(ChamadoClientePage);
 
       }else if(success[0].tipo == "Funcionário"){
         console.log(success[0].tipo);
         this.usuarioServices.logar(success);
-        this.chamadoServices.usuarioLogadoMethod();
+        //this.chamadoServices.usuarioLogadoMethod();
         this.navCtrl.setRoot(ChamadoFuncionarioPage);
       }
       //

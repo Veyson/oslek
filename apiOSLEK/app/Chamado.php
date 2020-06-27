@@ -15,4 +15,6 @@ class Chamado extends Model
     {
         return $this->belongsTo(User::class,'usuario_id','id');
     }
+
+    protected $casts=['created_at'=>'datetime:d/m/yy - h:m:s'];
 }

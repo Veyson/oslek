@@ -15,9 +15,6 @@ class ChamadoController extends Controller
      */
     public function index()
     {
-        //
-        //$list_chamados = Chamado::all();
-        //return $chamados;
         $chamados = Chamado::with('usuario')->get();
         return $chamados;
     }
@@ -85,7 +82,7 @@ class ChamadoController extends Controller
     public function show(Chamado $chamado)
     {
         //
-        return $chamado;
+        return Chamado::find($id);
     }
 
     /**
@@ -146,5 +143,10 @@ class ChamadoController extends Controller
     public function destroy(Chamado $chamado)
     {
         //
+        try {
+            Chamado::where('id', $chamado->id)->delete();
+        } catch(Exception $e) {
+            return response($e->getMessage(), 400);
+        }
     }
 }

@@ -5,6 +5,7 @@ import { UsuarioService } from "./Usuario.service";
 import { Global } from '../shared/Global';
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs/Observable";
+
 @Injectable()
 export class ChamadoService implements IChamadoService {
     
@@ -16,10 +17,10 @@ export class ChamadoService implements IChamadoService {
         console.log(this.usuarioLogado);
     }    
 
-    usuarioLogadoMethod(): void{
-        this.usuarioLogado = this.usuarioService.retornarUsuarioLogado();
-        console.log(this.usuarioLogado);
-    }
+    //usuarioLogadoMethod(): void{
+    //   this.usuarioLogado = this.usuarioService.retornarUsuarioLogado();
+    //    console.log(this.usuarioLogado);
+    //}
     criarChamados(chamado: Chamado): Observable<Object> {
 
         if ( !chamado.titulo ) throw new Error("O campo titulo é obrigatório.");
@@ -35,6 +36,19 @@ export class ChamadoService implements IChamadoService {
         return this.http.post(this.apiURL, chamado);
 
     }
+
+    atualizarChamado(chamado: Chamado): Observable<Object> {
+        
+        if ( chamado.status == "1"){
+            chamado.status = "Pendente";
+        }else if ( chamado.status == "2"){
+            chamado.status = "Em andamento";
+        }else if ( chamado.status == "3"){
+            chamado.status = "Concluído"
+        }
+        return this.http.put(this.apiURL+"/"+chamado.id, chamado);
+    }
+
     listarChamados(): Observable<Object> {
         return this.http.get(this.apiURL);
     }
@@ -53,18 +67,7 @@ export class ChamadoService implements IChamadoService {
         return chamadoDetalhado;
     }
 
-    killChamadoStorage(){
+    killChamadoStorage(): void{
         localStorage.removeItem("detalharChamado");
     }
-
-    atualizarChamado(chamado: Chamado): Observable<Object> {
-        if ( chamado.status == "1"){
-            chamado.status = "Pendente";
-        }else if ( chamado.status == "2"){
-            chamado.status = "Em andamento";
-        }else if ( chamado.status == "3"){
-            chamado.status = "Concluído"
-        }
-        return this.http.put(this.apiURL+"/"+chamado.id, chamado);
-      }
 }

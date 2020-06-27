@@ -16,6 +16,7 @@ import { UsuarioService } from '../../services/Usuario.service';
 @Component({
   selector: 'page-chamado-cliente',
   templateUrl: 'chamado-cliente.html',
+  providers: [ChamadoService]
 })
 export class ChamadoClientePage {
 

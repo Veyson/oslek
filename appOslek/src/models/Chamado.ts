@@ -5,8 +5,8 @@ export class Chamado {
   public titulo: string = null;
   public descricao: string = null;
   public status: string = null;
-  public usuario_id: number = null;
   public setor: string = null;
+  public usuario_id: number = null; 
   public created_at: Date = null;
   public usuario: Usuario = null;
 }
