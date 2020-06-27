@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
 import { ChamadoClientePage } from '../chamado-cliente/chamado-cliente';
 import { Usuario } from '../../models/Usuario';
 import { UsuarioService } from '../../services/Usuario.service';
@@ -9,6 +9,7 @@ import { ChamadoService } from '../../services/Chamado.service';
 import { trigger, style, animate, transition } from '@angular/animations';
 import { ValidarCpf } from '../../validation/ValidarCpf';
 import { IonLoading } from '../../async/IonLoading';
+import { IonAlert } from '../../async/IonAlert';
 
 @IonicPage()
 @Component({
@@ -63,6 +64,7 @@ export class LoginPage {
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
     public loadingController: LoadingController,
+    public alertController: AlertController,
     public usuarioServices: UsuarioService, 
     public chamadoServices: ChamadoService) {
     localStorage.clear();
@@ -90,7 +92,7 @@ export class LoginPage {
 
     }, (error) => {
       IonLoading.dismissLoading();
-      console.log(error);
+      IonAlert.presentAlert("Aviso", "Usuario", error, this.alertController);
     });
   }
 
@@ -108,14 +110,15 @@ export class LoginPage {
       this.usuarioServices.criarUsuario(this.usuario).subscribe((success) => {
         console.log(success);
         IonLoading.dismissLoading();
+        IonAlert.presentAlert("Aviso", "Usuario", "Cadastrado com suceso!", this.alertController);
         this.navCtrl.setRoot(LoginPage);
       }, (error) => {
         IonLoading.dismissLoading();
-        console.log(error);
+        IonAlert.presentAlert("Aviso", "Usuario", error, this.alertController);
       });
     }else{
       IonLoading.dismissLoading();
-      console.log("CPF inválido!")
+      IonAlert.presentAlert("Aviso", "Usuario", "CPF inválido!", this.alertController);
     }
   }
 

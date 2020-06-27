@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
 import { LoginPage } from '../login/login';
 import { Chamado } from '../../models/Chamado';
 import { ChamadoService } from '../../services/Chamado.service';
 import { UsuarioService } from '../../services/Usuario.service';
 import { IonLoading } from '../../async/IonLoading';
+import { IonAlert } from '../../async/IonAlert';
 
 /**
  * Generated class for the ChamadoClientePage page.
@@ -29,6 +30,7 @@ export class ChamadoClientePage {
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
     public loadingController: LoadingController,
+    public alertController: AlertController,
     public chamadoServices: ChamadoService, 
     public usuarioServices: UsuarioService) {
   }
@@ -50,7 +52,7 @@ export class ChamadoClientePage {
       this.setor = "";
       IonLoading.dismissLoading();
     }, (error) => {
-      console.log(error);
+      IonAlert.presentAlert("Aviso", "Usuario", error, this.alertController);
       IonLoading.dismissLoading();
     });
     

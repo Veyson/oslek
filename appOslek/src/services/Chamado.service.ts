@@ -5,6 +5,8 @@ import { UsuarioService } from "./Usuario.service";
 import { Global } from '../shared/Global';
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs/Observable";
+import { AlertController } from "ionic-angular";
+import { IonAlert } from "../async/IonAlert";
 
 @Injectable()
 export class ChamadoService implements IChamadoService {
@@ -12,15 +14,17 @@ export class ChamadoService implements IChamadoService {
     public usuarioLogado: Object;
     public apiURL: string = Global.apiURL+"chamados";
 
-    constructor(public usuarioService: UsuarioService, public http: HttpClient) {
+    constructor(public usuarioService: UsuarioService, 
+        public http: HttpClient, public alertController: AlertController) {
+
         this.usuarioLogado = this.usuarioService.retornarUsuarioLogado();
         console.log(this.usuarioLogado);
     }    
 
     criarChamados(chamado: Chamado): Observable<Object> {
 
-        if ( !chamado.titulo ) throw new Error("O campo titulo é obrigatório.");
-        if ( !chamado.descricao ) throw new Error("O campo decrição é obrigatório.");
+        if ( !chamado.titulo ) IonAlert.presentAlert("Aviso", "Chamdo", "O campo título é obrigatório!", this.alertController);
+        if ( !chamado.descricao ) IonAlert.presentAlert("Aviso", "Chamdo", "O campo descrição é obrigatório!", this.alertController);
         if ( chamado.setor == "1"){
             chamado.setor = "Administração";
         }else if ( chamado.setor == "2"){

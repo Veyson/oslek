@@ -1,11 +1,12 @@
 import { Component} from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController} from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, AlertController} from 'ionic-angular';
 import { LoginPage } from '../login/login';
 import { ChamadoDescricaoPage } from '../chamado-descricao/chamado-descricao';
 import { ChamadoService } from '../../services/Chamado.service';
 import { Chamado } from '../../models/Chamado';
 import { UsuarioService } from '../../services/Usuario.service';
 import { IonLoading } from '../../async/IonLoading';
+import { IonAlert } from '../../async/IonAlert';
 
 /**
  * Generated class for the ChamadoFuncionarioPage page.
@@ -30,6 +31,7 @@ export class ChamadoFuncionarioPage {
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
     public loadingController: LoadingController,
+    public alertController: AlertController,
     public chamadoServices: ChamadoService, 
     public usuarioServices: UsuarioService) {
       this.contarChamados();
@@ -40,8 +42,8 @@ export class ChamadoFuncionarioPage {
     this.chamadoServices.listarChamados().subscribe((response) => {
       this.chamados = <Chamado[]> response;
       IonLoading.dismissLoading();
-    }, (erro) => {
-      console.log(erro);
+    }, (error) => {
+      IonAlert.presentAlert("Aviso", "Usuario", error, this.alertController);
       IonLoading.dismissLoading();
     });
   }
@@ -55,8 +57,8 @@ export class ChamadoFuncionarioPage {
       this.countPendente = response.pendente;
       IonLoading.dismissLoading();
       this.buscarChamados();
-    }, (erro)=>{
-      console.log(erro);
+    }, (error)=>{
+      IonAlert.presentAlert("Aviso", "Usuario", error, this.alertController);
       IonLoading.dismissLoading();
     });
   }

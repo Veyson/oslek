@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
 import { ChamadoFuncionarioPage } from '../chamado-funcionario/chamado-funcionario';
 import { ChamadoService } from '../../services/Chamado.service';
 import { Chamado } from '../../models/Chamado';
 import { IonLoading } from '../../async/IonLoading';
+import { IonAlert } from '../../async/IonAlert';
 
 /**
  * Generated class for the ChamadoDescricaoPage page.
@@ -24,6 +25,7 @@ export class ChamadoDescricaoPage {
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public loadingController: LoadingController, 
+    public alertController: AlertController,
     public chamadoServices: ChamadoService) {
     this.chamado = this.chamadoServices.retornarChamadoDetalhado();
     console.log(this.chamado);
@@ -44,7 +46,7 @@ export class ChamadoDescricaoPage {
       console.log(response);
       IonLoading.dismissLoading();
     }, error => {
-      console.log(error);
+      IonAlert.presentAlert("Aviso", "Usuario", error, this.alertController);
       IonLoading.dismissLoading();
     });
   }
