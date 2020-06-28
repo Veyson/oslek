@@ -46,10 +46,11 @@
           <!--Card & CTA-->
           <ion-card class="bg-transparent-parcial mg-top-20 center border-radius" *ngFor="let chamado of chamados"(click)="goChamadoDescricaoPage(chamado);">
             <ion-card-header class="snow center light no-margin">
-              {{ chamado.titulo }} - {{ chamado.status }}
+              {{ chamado.titulo }}
             </ion-card-header>
 
-            <ion-card-content class="snow center light no-margin">      
+            <ion-card-content class="snow center light no-margin"> 
+              {{ chamado.status }}     
               <ion-grid>
                 <ion-row>
                   <ion-col col-6>
