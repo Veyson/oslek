@@ -92,7 +92,7 @@ export class LoginPage {
 
     }, (error) => {
       IonLoading.dismissLoading();
-      IonAlert.presentAlert("Aviso", "Usuario", error, this.alertController);
+      //IonAlert.presentAlert("Aviso", "Usuario", error, this.alertController);
     });
   }
 

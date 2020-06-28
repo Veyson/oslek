@@ -13,12 +13,13 @@ export class ValidarCpf {
         if (cpf == null) {
             return false;
         }
-        
-        cpf = usuario.cpf.replace(".", '').replace(".", '').replace("-", '');
 
-        if (cpf.length != 11) {
+        if (cpf.length != 14) {
             return false;
         }
+
+        cpf = usuario.cpf.replace(".", '').replace(".", '').replace("-", '');
+
         if ((cpf == '00000000000') ||
             (cpf == '11111111111') ||
             (cpf == '22222222222') ||
