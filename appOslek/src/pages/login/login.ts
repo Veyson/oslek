@@ -97,8 +97,8 @@ export class LoginPage {
   }
 
   validCpf(usuario: Usuario): boolean {
-    var cpfLimpo = usuario.cpf.replace(".", '').replace(".", '').replace("-", '');
-    if (ValidarCpf.cpf(cpfLimpo)) {
+
+    if (ValidarCpf.cpf(usuario)) {
       return true;
     }
     return false;
