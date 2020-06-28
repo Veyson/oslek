@@ -100,7 +100,7 @@ class UserController extends Controller
     public function show(User $usuario)
     {
         //
-        return User::find($id);
+        return User::find($usuario->id);
     }
 
     /**

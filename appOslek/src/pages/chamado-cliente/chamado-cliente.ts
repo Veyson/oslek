@@ -6,7 +6,8 @@ import { ChamadoService } from '../../services/Chamado.service';
 import { UsuarioService } from '../../services/Usuario.service';
 import { IonLoading } from '../../async/IonLoading';
 import { IonAlert } from '../../async/IonAlert';
-import { ChamadoListaPage } from '../chamado-lista/chamado-lista';
+import { ChamadoListaPage } from '../chamado-cliente-lista/chamado-lista';
+import { UsuarioClientePerfilPage } from '../usuario-cliente-perfil/usuario-cliente-perfil';
 
 /**
  * Generated class for the ChamadoClientePage page.
@@ -59,7 +60,7 @@ export class ChamadoClientePage {
   }
 
   goPerfil() {
- 
+    this.navCtrl.push(UsuarioClientePerfilPage);
   }
 
   goListaChamados() {

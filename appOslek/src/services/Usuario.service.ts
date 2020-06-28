@@ -35,14 +35,7 @@ export class UsuarioService implements IUsuarioService {
         if (!usuario.cpf) IonAlert.presentAlert("Aviso", "Usuario", "O campo CPF é obrigatório!", this.alertController);
         if (!usuario.email) IonAlert.presentAlert("Aviso", "Usuario", "O campo e-mail é obrigatório!", this.alertController);
         if (!this.validateEmail(usuario.email)) IonAlert.presentAlert("Aviso", "Usuario", "Utilize e-mail válido!", this.alertController);
-        if (!usuario.senha) IonAlert.presentAlert("Aviso", "Usuario", "O campo senha é obrigatório!", this.alertController);
-        if (!usuario.confirmarSenha) IonAlert.presentAlert("Aviso", "Usuario", "O campo confirmar senha é obrigatório!", this.alertController);
-        if (!usuario.tipo) {
-            usuario.tipo = "Cliente";
-        } else {
-            usuario.tipo = "Funcionário"
-        }
-        if (usuario.senha != usuario.confirmarSenha) IonAlert.presentAlert("Aviso", "Usuario", "As senhas estão incoerentes!", this.alertController);
+
         return this.http.put(this.apiURL+"/"+usuario.id, usuario);
     }
     recuperarSenha(id: number): Observable<Object> {
@@ -54,14 +47,14 @@ export class UsuarioService implements IUsuarioService {
         if (!usuario.senha) IonAlert.presentAlert("Aviso", "Usuario", "O campo senha é obrigatório", this.alertController);
         return this.http.post(this.apiURL +"/buscarusuario/", usuario);
     }
-    logar(usuario: Object): void {
+    logar(usuario: Usuario): void {
         localStorage.setItem("usuarioLogado", JSON.stringify(usuario));
     }
     logout(): void {
         localStorage.removeItem("usuarioLogado");
     }
-    retornarUsuarioLogado(): Object {
-        let usuarioLogado: Object = JSON.parse(localStorage.getItem("usuarioLogado"));
+    retornarUsuarioLogado(): Usuario {
+        let usuarioLogado: Usuario = JSON.parse(localStorage.getItem("usuarioLogado"));
         return usuarioLogado;
     }
     removerUsuario(usuario: Usuario): Observable<Object> {

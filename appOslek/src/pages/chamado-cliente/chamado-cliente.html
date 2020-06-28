@@ -6,16 +6,16 @@
       <div>
         <!--Dashboard-->
         <div>
-          <ion-fab top left>
+          <ion-fab top right>
             <button ion-fab>
               <ion-icon name="add"></ion-icon>
             </button >
             <ion-fab-list side="botton">
-              <button ion-fab>
-                <ion-icon name="information-circle" (click)="goPerfil();"></ion-icon>
+              <button ion-fab (click)="goPerfil();">
+                <ion-icon name="information-circle"></ion-icon>
               </button >
-              <button ion-fab>
-                <ion-icon name="paper-plane" (click)="goListaChamados();"></ion-icon>
+              <button ion-fab  (click)="goListaChamados();">
+                <ion-icon name="paper-plane"></ion-icon>
               </button >
             </ion-fab-list>
           </ion-fab>

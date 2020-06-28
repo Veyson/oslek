@@ -7,6 +7,7 @@ import { Chamado } from '../../models/Chamado';
 import { UsuarioService } from '../../services/Usuario.service';
 import { IonLoading } from '../../async/IonLoading';
 import { IonAlert } from '../../async/IonAlert';
+import { UsuarioFuncionarioPerfilPage } from '../usuario-funcionario-perfil/usuario-funcionario-perfil';
 
 /**
  * Generated class for the ChamadoFuncionarioPage page.
@@ -70,6 +71,10 @@ export class ChamadoFuncionarioPage {
   goChamadoDescricaoPage(chamado: Chamado) {
     this.chamadoServices.detalharChamado(chamado);
     this.navCtrl.setRoot(ChamadoDescricaoPage);
+  }
+
+  goPerfil() {
+    this.navCtrl.push(UsuarioFuncionarioPerfilPage);
   }
 
   logout() {

@@ -76,7 +76,8 @@ export class LoginPage {
 
   goOpenSystem() {
     IonLoading.presentLoading("Acessando sistema...", this.loadingController);
-    this.usuarioServices.login(this.usuario).subscribe((success) => {
+    this.usuarioServices.login(this.usuario).subscribe((success:Usuario) => {
+      console.log(success);
       if (success[0].tipo == "Cliente") {
         console.log(success[0].tipo);
         this.usuarioServices.logar(success);
@@ -92,7 +93,7 @@ export class LoginPage {
 
     }, (error) => {
       IonLoading.dismissLoading();
-      //IonAlert.presentAlert("Aviso", "Usuario", error, this.alertController);
+      IonAlert.presentAlert("Aviso", "Usuario", "Dados inválidos ou incorretos!", this.alertController);
     });
   }
 

@@ -1,0 +1,48 @@
+<ion-content>
+  <!--Background-->
+  <div class="background">
+    <!--Overlay-->
+    <div class="overlay">
+      <!--Container-->
+      <div>
+        <!--logo-->
+        <div class="center padding-top-40">
+          <img src='/assets/imgs/logo-oslek.png' class="logo-oslek" />
+        </div>
+
+        <div class="padding-20">
+          <!--Text-->
+          <div class="mg-top-30">
+            <!--Title-->
+            <h5 class="snow center bold no-margin">Verifique suas credências</h5>
+            <!--Subtitle-->
+            <h5 class="snow center light no-margin mg-top-5">Aqui você poderá visualizar seus dados!</h5>
+          </div>
+
+          <!--Formulário e CTA-->
+          <div class="padding-20">
+            <ion-item class="bg-transparent no-padding mg-top-30">
+              <ion-label stacked class="snow bold">Seu CPF</ion-label>
+              <ion-input [(ngModel)]="usuario[0].cpf" [brmasker]="{mask:'000.000.000-00', len:14}" class="light snow"
+                type="text"></ion-input>
+            </ion-item>
+
+            <ion-item class="bg-transparent no-padding mg-top-20">
+              <ion-label stacked class="snow bold">Seu nome</ion-label>
+              <ion-input [(ngModel)]="usuario[0].nome" type="text" class="light snow"></ion-input>
+            </ion-item>
+
+            <ion-item class="bg-transparent no-padding mg-top-20">
+              <ion-label stacked class="snow bold">Seu e-mail atual</ion-label>
+              <ion-input [(ngModel)]="usuario[0].email" type="email" class="light snow"></ion-input>
+            </ion-item>
+
+            <div class="cta center bold mg-top-50" (click)="goBack();">
+              Retorne a página anterior
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>

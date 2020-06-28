@@ -96,7 +96,7 @@ class ChamadoController extends Controller
     public function show(Chamado $chamado)
     {
         //
-        return Chamado::find($id);
+        return Chamado::find($chamado->id);
     }
 
     /**
