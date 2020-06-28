@@ -1,5 +1,5 @@
-import { Component} from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController, AlertController} from 'ionic-angular';
+import { Component } from '@angular/core';
+import { IonicPage, NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
 import { LoginPage } from '../login/login';
 import { ChamadoDescricaoPage } from '../chamado-descricao/chamado-descricao';
 import { ChamadoService } from '../../services/Chamado.service';
@@ -28,19 +28,19 @@ export class ChamadoFuncionarioPage {
   public countEmAndamento: any;
   public countPendente: any;
 
-  constructor(public navCtrl: NavController, 
+  constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public loadingController: LoadingController,
     public alertController: AlertController,
-    public chamadoServices: ChamadoService, 
+    public chamadoServices: ChamadoService,
     public usuarioServices: UsuarioService) {
-      this.contarChamados();
+    this.contarChamados();
   }
 
   buscarChamados() {
     IonLoading.presentLoading("Buscando chamados...", this.loadingController);
     this.chamadoServices.listarChamados().subscribe((response) => {
-      this.chamados = <Chamado[]> response;
+      this.chamados = <Chamado[]>response;
       IonLoading.dismissLoading();
     }, (error) => {
       IonAlert.presentAlert("Aviso", "Usuario", error, this.alertController);
@@ -48,16 +48,16 @@ export class ChamadoFuncionarioPage {
     });
   }
 
-  contarChamados(){
+  contarChamados() {
     IonLoading.presentLoading("Contabilizando chamados...", this.loadingController);
-    this.chamadoServices.contarChamados().subscribe((response:any)=>{
+    this.chamadoServices.contarChamados().subscribe((response: any) => {
       console.log(response);
       this.countConcluido = response.concluido;
       this.countEmAndamento = response.emAndamento;
       this.countPendente = response.pendente;
       IonLoading.dismissLoading();
       this.buscarChamados();
-    }, (error)=>{
+    }, (error) => {
       IonAlert.presentAlert("Aviso", "Usuario", error, this.alertController);
       IonLoading.dismissLoading();
     });
@@ -67,7 +67,7 @@ export class ChamadoFuncionarioPage {
     console.log('ionViewDidLoad ChamadoFuncionarioPage');
   }
 
-  goChamadoDescricaoPage(chamado: Chamado){
+  goChamadoDescricaoPage(chamado: Chamado) {
     this.chamadoServices.detalharChamado(chamado);
     this.navCtrl.setRoot(ChamadoDescricaoPage);
   }

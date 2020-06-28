@@ -5,6 +5,19 @@
     <div class="overlay">
       <!--Container-->
       <div>
+        <!--Dashboard-->
+        <div>
+          <ion-fab top left>
+            <button ion-fab>
+              <ion-icon name="add"></ion-icon>
+            </button >
+            <ion-fab-list side="botton">
+              <button ion-fab>
+                <ion-icon name="information-circle"></ion-icon>
+              </button >
+            </ion-fab-list>
+          </ion-fab>
+        </div>        
         <!--logo-->
         <div class="center padding-top-40">
           <img src='/assets/imgs/logo-oslek.png' class="logo-oslek"/>
@@ -18,7 +31,7 @@
             <!--Subtitle-->
             <h5 class="snow center light no-margin mg-top-10">Abaixo você poderá verificar os chamados abertos.</h5>
           </div>
-
+          <!--Notifictions-->
           <div class="mg-top-30 center">
             <ion-badge color="primary">{{chamados.length}}</ion-badge>
             <ion-badge color="danger">{{countPendente}}</ion-badge>

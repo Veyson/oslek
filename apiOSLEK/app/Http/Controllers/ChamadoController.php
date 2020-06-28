@@ -9,7 +9,7 @@ use Exception;
 use stdClass;
 
 class ChamadoController extends Controller
-{
+{ 
     /**
      * Display a listing of the resource.
      *
@@ -18,6 +18,11 @@ class ChamadoController extends Controller
     public function index()
     {
         $chamados = Chamado::with('usuario')->get();
+        return $chamados;
+    }
+
+    public function buscarChamadoUsuarioID($id) {
+        $chamados = Chamado::with('usuario')->where('usuario_id', $id)->get();
         return $chamados;
     }
 

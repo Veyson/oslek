@@ -4,6 +4,22 @@
     <div class="overlay">
       <!--Container-->
       <div>
+        <!--Dashboard-->
+        <div>
+          <ion-fab top left>
+            <button ion-fab>
+              <ion-icon name="add"></ion-icon>
+            </button >
+            <ion-fab-list side="botton">
+              <button ion-fab>
+                <ion-icon name="information-circle" (click)="goPerfil();"></ion-icon>
+              </button >
+              <button ion-fab>
+                <ion-icon name="paper-plane" (click)="goListaChamados();"></ion-icon>
+              </button >
+            </ion-fab-list>
+          </ion-fab>
+        </div>  
         <!--logo-->
         <div class="center padding-top-40">
           <img src='/assets/imgs/logo-oslek.png' class="logo-oslek"/>
@@ -21,18 +37,18 @@
           <!--Formulário e CTA-->
           <ion-item class="bg-transparent no-padding mg-top-30">
             <ion-label stacked class="snow bold">Título</ion-label>
-            <ion-input [(ngModel)]="chamado.titulo" type="text" class="light snow"></ion-input>
+            <ion-input [(ngModel)]="titulo" type="text" class="light snow"></ion-input>
           </ion-item>
         
           <ion-item class="bg-transparent no-padding mg-top-20">
             <ion-label stacked class="snow bold">Descrição</ion-label>
-            <ion-textarea [(ngModel)]="chamado.descricao" rows="5" class="light snow"></ion-textarea>
+            <ion-textarea [(ngModel)]="descricao" rows="5" class="light snow"></ion-textarea>
           </ion-item>  
         
           <ion-item class="bg-transparent no-padding mg-top-20">
             <ion-label stacked class="snow bold">Setor</ion-label>
-            <ion-select [(ngModel)]="chamado.setor" cancelText="Cancelar" okText="Ok" class="light snow">
-              <ion-option value="1" selected="true">Administração</ion-option>
+            <ion-select [(ngModel)]="setor" cancelText="Cancelar" okText="Ok" class="light snow">
+              <ion-option value="1">Administração</ion-option>
               <ion-option value="2">Biblioteca</ion-option>
             </ion-select>
           </ion-item>

@@ -25,9 +25,9 @@ export class ChamadoService implements IChamadoService {
 
         if ( !chamado.titulo ) IonAlert.presentAlert("Aviso", "Chamdo", "O campo título é obrigatório!", this.alertController);
         if ( !chamado.descricao ) IonAlert.presentAlert("Aviso", "Chamdo", "O campo descrição é obrigatório!", this.alertController);
-        if ( chamado.setor == "1"){
+        if ( chamado.setor === "1"){
             chamado.setor = "Administração";
-        }else if ( chamado.setor == "2"){
+        }else if ( chamado.setor === "2"){
             chamado.setor = "Biblioteca";
         }
         chamado.status = "Pendente";
@@ -51,6 +51,10 @@ export class ChamadoService implements IChamadoService {
 
     listarChamados(): Observable<Object> {
         return this.http.get(this.apiURL);
+    }
+
+    listarChamadosId(): Observable<Object> {
+        return this.http.get(this.apiURL+"/chamadousuario/"+this.usuarioLogado[0].id);
     }
 
     contarChamados(): Observable<Object> {

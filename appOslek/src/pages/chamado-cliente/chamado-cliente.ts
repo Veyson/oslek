@@ -6,6 +6,7 @@ import { ChamadoService } from '../../services/Chamado.service';
 import { UsuarioService } from '../../services/Usuario.service';
 import { IonLoading } from '../../async/IonLoading';
 import { IonAlert } from '../../async/IonAlert';
+import { ChamadoListaPage } from '../chamado-lista/chamado-lista';
 
 /**
  * Generated class for the ChamadoClientePage page.
@@ -39,7 +40,6 @@ export class ChamadoClientePage {
     console.log('ionViewDidLoad ChamadoClientePage');
   }
 
-
   registrarChamado() {
     IonLoading.presentLoading("Registrando chamado...", this.loadingController);
     this.chamado.titulo = this.titulo;
@@ -56,6 +56,14 @@ export class ChamadoClientePage {
       IonLoading.dismissLoading();
     });
     
+  }
+
+  goPerfil() {
+ 
+  }
+
+  goListaChamados() {
+    this.navCtrl.setRoot(ChamadoListaPage);  
   }
 
   logout() {
