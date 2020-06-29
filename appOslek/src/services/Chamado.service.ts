@@ -23,8 +23,8 @@ export class ChamadoService implements IChamadoService {
 
     criarChamados(chamado: Chamado): Observable<Object> {
 
-        if ( !chamado.titulo ) IonAlert.presentAlert("Aviso", "Chamdo", "O campo título é obrigatório!", this.alertController);
-        if ( !chamado.descricao ) IonAlert.presentAlert("Aviso", "Chamdo", "O campo descrição é obrigatório!", this.alertController);
+        if ( !chamado.titulo ) IonAlert.presentAlert("Aviso", "Chamado", "O campo título é obrigatório!", this.alertController);
+        if ( !chamado.descricao ) IonAlert.presentAlert("Aviso", "Chamado", "O campo descrição é obrigatório!", this.alertController);
         if ( chamado.setor === "1"){
             chamado.setor = "Administração";
         }else if ( chamado.setor === "2"){

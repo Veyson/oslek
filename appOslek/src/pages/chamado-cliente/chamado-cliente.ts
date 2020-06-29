@@ -52,7 +52,8 @@ export class ChamadoClientePage {
       this.setor = "";
       IonLoading.dismissLoading();
     }, (error) => {
-      IonAlert.presentAlert("Aviso", "Usuario", error, this.alertController);
+      console.log(error);
+      IonAlert.presentAlert("Aviso", "Usuário", error.error, this.alertController);
       IonLoading.dismissLoading();
     });
     
