@@ -26,12 +26,12 @@
 
           <ion-item class="bg-transparent no-padding mg-top-20">
             <ion-label stacked class="snow bold">Informe nova senha</ion-label>
-            <ion-input [(ngModel)]="usuario[0].senha" type="text" class="light snow"></ion-input>
+            <ion-input [(ngModel)]="usuario[0].senha" type="password" class="light snow"></ion-input>
           </ion-item>
 
           <ion-item class="bg-transparent no-padding mg-top-20">
             <ion-label stacked class="snow bold">Confirmando nova senha</ion-label>
-            <ion-input [(ngModel)]="usuario[0].confirmarSenha" type="text" class="light snow"></ion-input>
+            <ion-input [(ngModel)]="usuario[0].confirmarSenha" type="password" class="light snow"></ion-input>
           </ion-item>
 
           <div class="cta center bold mg-top-50" (click)="atualizarUsuario();">

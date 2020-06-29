@@ -1,8 +1,10 @@
+import { LoadingController } from 'ionic-angular';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ChamadoFuncionarioPage } from '../chamado-funcionario/chamado-funcionario';
 import { UsuarioService } from '../../services/Usuario.service';
 import { Usuario } from '../../models/Usuario';
+import { IonLoading } from '../../async/IonLoading';
 
 /**
  * Generated class for the UsuarioFuncionarioPerfilPage page.
@@ -21,7 +23,7 @@ export class UsuarioFuncionarioPerfilPage {
   public usuario: Usuario = new Usuario();
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-    public usuarioService: UsuarioService) {
+    public usuarioService: UsuarioService, public loadingController: LoadingController) {
       this.usuario = this.usuarioService.retornarUsuarioLogado();
       this.usuario[0].senha = '';
       this.usuario[0].confirmarSenha = '';
@@ -33,12 +35,18 @@ export class UsuarioFuncionarioPerfilPage {
   }
 
   atualizarUsuario() {
+    IonLoading.presentLoading("Atualizando Usuario...", this.loadingController);
     this.usuarioService.atualizarUsuario(this.usuario[0]).subscribe((response) => {
       console.log(response);
       this.usuarioService.logar(this.usuario);
+
+      IonLoading.dismissLoading();
+      this.navCtrl.setRoot(ChamadoFuncionarioPage);
     }, error => {
       console.log(error);
+      IonLoading.dismissLoading();
     });
+    
   }
 
   goBack() {

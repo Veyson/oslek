@@ -29,6 +29,8 @@ export class ChamadoService implements IChamadoService {
             chamado.setor = "Administração";
         }else if ( chamado.setor === "2"){
             chamado.setor = "Biblioteca";
+        }else if ( chamado.setor === "3"){
+            chamado.setor = "Informatica";
         }
         chamado.status = "Pendente";
         chamado.usuario_id = this.usuarioLogado[0].id;
