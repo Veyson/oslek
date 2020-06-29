@@ -23,6 +23,8 @@ export class UsuarioFuncionarioPerfilPage {
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public usuarioService: UsuarioService) {
       this.usuario = this.usuarioService.retornarUsuarioLogado();
+      this.usuario[0].senha = '';
+      this.usuario[0].confirmarSenha = '';
       console.log(this.usuario);
   }
 
@@ -31,7 +33,7 @@ export class UsuarioFuncionarioPerfilPage {
   }
 
   atualizarUsuario() {
-    this.usuarioService.atualizarUsuario(this.usuario).subscribe((response) => {
+    this.usuarioService.atualizarUsuario(this.usuario[0]).subscribe((response) => {
       console.log(response);
       this.usuarioService.logar(this.usuario);
     }, error => {

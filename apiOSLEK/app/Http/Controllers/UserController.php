@@ -74,6 +74,7 @@ class UserController extends Controller
             if ($senha !== $confirmarSenha) return response('As senhas não coincidem.', 400);
             
             $senha = Hash::make($senha);
+            $senha = Hash::make($confirmarSenha);
 
             $usuario = User::create([
                 'nome' => $nome,
@@ -124,6 +125,7 @@ class UserController extends Controller
     public function update(Request $request, User $usuario)
     {
         try {
+            $id = $request->input('id');
             $nome = $request->input('nome');
             $cpf = $request->input('cpf');
             $email = $request->input('email');
@@ -140,9 +142,6 @@ class UserController extends Controller
             }
             if (!$tipo) return response('O Campo tipo de usuário é obrigatório.', 400);
            
-            $existe = User::where('email', $email)->get();
-            if ($existe->isNotEmpty()) return response('Já existe um usuário com esse email.', 400);
-
             $usuario = User::find($id);
             $usuario->nome = $request->nome;
             $usuario->cpf = $request->cpf;
@@ -151,6 +150,7 @@ class UserController extends Controller
             
             if ($senha) {
                 $usuario->senha = Hash::make($senha);
+                $usuario->confirmarSenha = Hash::make($confirmarSenha);
             }
 
             $usuario->save();

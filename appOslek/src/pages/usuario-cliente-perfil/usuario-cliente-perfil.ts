@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { ChamadoClientePage } from '../chamado-cliente/chamado-cliente';
+import { ChamadoFuncionarioPage } from '../chamado-funcionario/chamado-funcionario';
 import { UsuarioService } from '../../services/Usuario.service';
 import { Usuario } from '../../models/Usuario';
 
 /**
- * Generated class for the UsuarioClientePerfilPage page.
+ * Generated class for the UsuarioFuncionarioPerfilPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -23,6 +23,8 @@ export class UsuarioClientePerfilPage {
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public usuarioService: UsuarioService) {
       this.usuario = this.usuarioService.retornarUsuarioLogado();
+      this.usuario[0].senha = '';
+      this.usuario[0].confirmarSenha = '';
       console.log(this.usuario);
   }
 
@@ -31,7 +33,7 @@ export class UsuarioClientePerfilPage {
   }
 
   atualizarUsuario() {
-    this.usuarioService.atualizarUsuario(this.usuario).subscribe((response) => {
+    this.usuarioService.atualizarUsuario(this.usuario[0]).subscribe((response) => {
       console.log(response);
       this.usuarioService.logar(this.usuario);
     }, error => {
@@ -40,7 +42,7 @@ export class UsuarioClientePerfilPage {
   }
 
   goBack() {
-    this.navCtrl.setRoot(ChamadoClientePage);
+    this.navCtrl.setRoot(ChamadoFuncionarioPage);
   }
 
 }

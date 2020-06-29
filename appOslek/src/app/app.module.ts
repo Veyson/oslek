@@ -15,8 +15,8 @@ import { ChamadoService } from '../services/Chamado.service';
 import { BrMaskerModule } from 'brmasker-ionic-3';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ChamadoListaPage } from '../pages/chamado-cliente-lista/chamado-lista';
-import { UsuarioClientePerfilPage } from '../pages/usuario-cliente-perfil/usuario-cliente-perfil';
 import { UsuarioFuncionarioPerfilPage } from '../pages/usuario-funcionario-perfil/usuario-funcionario-perfil';
+import { UsuarioClientePerfilPage } from '../pages/usuario-cliente-perfil/usuario-cliente-perfil';
 
 @NgModule({
   declarations: [
