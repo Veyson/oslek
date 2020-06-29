@@ -50,7 +50,7 @@ export class UsuarioClientePerfilPage {
   }
 
   goBack() {
-    this.navCtrl.setRoot(ChamadoFuncionarioPage);
+    this.navCtrl.setRoot(ChamadoClientePage);
   }
 
 }
