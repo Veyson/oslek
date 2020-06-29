@@ -74,7 +74,7 @@ class UserController extends Controller
             if ($senha !== $confirmarSenha) return response('As senhas não coincidem.', 400);
             
             $senha = Hash::make($senha);
-            $senha = Hash::make($confirmarSenha);
+            $confirmarSenha = Hash::make($confirmarSenha);
 
             $usuario = User::create([
                 'nome' => $nome,
@@ -130,6 +130,7 @@ class UserController extends Controller
             $cpf = $request->input('cpf');
             $email = $request->input('email');
             $senha = $request->input('senha');
+            $confirmarSenha = $request->input('confirmarSenha');
             $tipo = $request->input('tipo');
 
             if (!$nome) return response('O Campo nome é obrigatório.', 400);
@@ -137,8 +138,8 @@ class UserController extends Controller
             if (!$email) return response('O Campo email é obrigatório.', 400);
             if ($senha) {
                 $confirmarSenha = $request->input('confirmarSenha');
-                if (!$confirmarSenha) return response('O campo confirmar senha é obrigatório.', 400);
-                if ($confirmarSenha !== $senha) return response('As senhas não coincidem.', 400);
+            if (!$confirmarSenha) return response('O campo confirmar senha é obrigatório.', 400);
+            if ($confirmarSenha !== $senha) return response('As senhas não coincidem.', 400);
             }
             if (!$tipo) return response('O Campo tipo de usuário é obrigatório.', 400);
            
