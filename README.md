@@ -12,13 +12,13 @@ A ticketing system developed on the mobile platform that centralizes all service
 
 ## Technology | Language :books:
 
-:sparkler: PHP
+:trophy: PHP
 
-:sparkler: Typescript
+:trophy: Typescript
 
-:sparkler: [Ionic] (https://ionicframework.com/)
+:trophy: [Ionic] (https://ionicframework.com/)
 
-:sparkler: [Laravel] (https://laravel.com/)
+:trophy: [Laravel] (https://laravel.com/)
 
 ## Functionalities :star:
 
@@ -40,12 +40,38 @@ A ticketing system developed on the mobile platform that centralizes all service
 
 ## Configuration :computer:
 
-1. Perform the installation of 'node.js', automatically 'npm' is installed together with the node;
+:warning: Perform the installation of 'node.js', automatically 'npm' is installed together with the node;
 
-2. Perform installation of the XAMPP server;
+:warning: Perform installation of the XAMPP server;
 
-3. Perform installation of the package manager 'Composer';
+:warning: Perform installation of the package manager 'Composer';
 
-4. Within the system directory in the apiOslek folder, give the command 'composer install';
+:warning: Within the system directory in the apiOslek folder, give the command 
 
-5. Within the system directory in the appOslek folder, give the command 'npm install';
+```
+composer install
+```
+
+:warning: Within the system directory in the appOslek folder, give the command 
+
+```
+npm install
+```
+
+## Database
+
+--- Usuario ---
+
+|nome|cpf|email|senha|confirmarSenha|tipo|
+| ----------- | ----------- | ----------- | ----------- | ----------- | ----------- |
+| fenando | 123.123.123-12 | fernando@live.com | 1234 | 1234 | cliente |
+
+```
+senha e confirmaSenha are encrypted
+```
+
+--- Chamado ---
+
+|titulo|descricao|status|setor|usuarioId|
+| ----------- | ----------- | ----------- | ----------- | ----------- |
+| exemplo | exemplo | concluído | exemplo | fernando |
